@@ -6,17 +6,20 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    screens: {
-      'desktop-xl': '1200px',
-    },
     extend: {
+      screens: {
+        "desktop-xl": "1200px",
+      },
+      colors: {
+        "bg-greyish": "#ececec",
+      },
       maxWidth: {
-        '1/2': '280px',
-        '1': '560px'
+        "1/2": "280px",
+        1: "560px",
       },
       scale: {
-        '102': '1.02'
-      }
+        102: "1.02",
+      },
     },
   },
   plugins: [],

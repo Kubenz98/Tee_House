@@ -9,7 +9,7 @@ const NavBar = () => {
   const navHandler = () => setNavActive((state) => !state);
 
   return (
-    <header className="border-b border-gray-300 shadow">
+    <header className="fixed bg-slate-100 top-0 left-0 right-0 border-b border-gray-300 shadow z-10">
       <nav className="py-4 px-4 flex justify-between items-center">
         <Image src="/gh.png" alt="logo" width={220} height={34} priority />
           <ul className="max-[640px]:hidden">

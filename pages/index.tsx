@@ -1,4 +1,5 @@
 import NavBar from "@/components/NavBar";
+import Page from "@/components/Page";
 import ProductItem from "@/components/ProductItem";
 import { getProducts, Product } from "@/lib/products";
 import { GetStaticProps } from "next";
@@ -17,22 +18,13 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
 
 export default function Home({ products }: HomePageProps) {
   return (
-    <>
-      <Head>
-        <title>Green House - your plants</title>
-        <meta name="description" content="Get your favourite plants!" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <NavBar />
-      <main className="px-2 py-1 text-stone-700">
-        <h1 className="text-4xl text-center mt-12 mb-20">Bestsellers</h1>
-        <ul className="mt-10 flex gap-5 flex-row flex-wrap justify-around mx-auto max-w-screen-2xl">
-          {products.map((product: Product) => (
-            <ProductItem key={product.id} product={product} />
-          ))}
-        </ul>
-      </main>
-    </>
+    <Page title="">
+      <h1 className="text-4xl text-center mb-10">Bestsellers</h1>
+      <ul className="mt-10 flex gap-5 flex-row flex-wrap justify-around mx-auto max-w-[1800px]">
+        {products.map((product: Product) => (
+          <ProductItem key={product.id} product={product} />
+        ))}
+      </ul>
+    </Page>
   );
 }
