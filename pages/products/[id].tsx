@@ -1,7 +1,7 @@
 import Page from "@/components/Page";
+import { ApiError } from "@/lib/apit";
 import { getProducts, getProduct, Product } from "@/lib/products";
 import { GetStaticPaths, GetStaticProps } from "next";
-import Head from "next/head";
 import Image from "next/image";
 import { ParsedUrlQuery } from "querystring";
 
@@ -19,7 +19,7 @@ export const getStaticPaths: GetStaticPaths<ProductParams> = async () => {
     paths: products.map((product) => ({
       params: { id: product.id.toString() },
     })),
-    fallback: 'blocking',
+    fallback: "blocking",
   };
 };
 
@@ -29,7 +29,7 @@ export const getStaticProps: GetStaticProps<
 > = async ({ params }) => {
   const id = params?.id;
   if (!id) {
-    throw new Error();
+   throw new Error('id not set')
   }
   try {
     const product = await getProduct(id);
@@ -37,12 +37,14 @@ export const getStaticProps: GetStaticProps<
       props: { product },
     };
   } catch (err) {
-    throw new Error();
+    if(err instanceof ApiError && err.status === 404) {
+      return { notFound: true };
+    }
+    throw err
   }
 };
 
 const ProductPage = ({ product }: ProductProps) => {
-  console.log(product);
   return (
     <Page
       title={`${product.title} |`}
@@ -60,7 +62,9 @@ const ProductPage = ({ product }: ProductProps) => {
           />
         </div>
         <div className="w-full min-[620px]:ml-3">
-          <h2 className="text-4xl my-2 text-center font-semibold">{product.title}</h2>
+          <h2 className="text-4xl my-2 text-center font-semibold">
+            {product.title}
+          </h2>
           <div className="flex flex-col min-[820px]:max-w-xs mr-auto mt-6 py-2 font-slim border-t-2 border-b-2 border-gray-400 sm:text-lg lg:text-xl">
             <span>
               Availability:{" "}
@@ -73,7 +77,9 @@ const ProductPage = ({ product }: ProductProps) => {
               Delivery: <span className="font-semibold">free, only today!</span>
             </span>
           </div>
-          <p className="mt-8 font-semibold sm:text-lg lg:text-xl">{product.long_description}</p>
+          <p className="mt-8 font-semibold sm:text-lg lg:text-xl">
+            {product.long_description}
+          </p>
           {/* TODO: INPUT AND BUTTON */}
         </div>
       </div>

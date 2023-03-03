@@ -4,9 +4,9 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'monkfish-app-sa5vq.ondigitalocean.app',
-        port: '',
+        protocol: 'http',
+        hostname: '127.0.0.1',
+        port: '1337',
         pathname: '/uploads/**'
       },
     ],

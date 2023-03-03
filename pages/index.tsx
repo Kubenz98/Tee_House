@@ -1,9 +1,7 @@
-import NavBar from "@/components/NavBar";
 import Page from "@/components/Page";
 import ProductItem from "@/components/ProductItem";
 import { getProducts, Product } from "@/lib/products";
 import { GetStaticProps } from "next";
-import Head from "next/head";
 
 interface HomePageProps {
   products: Product[];
