@@ -14,7 +14,7 @@ const Page = ({ title, children, className }: PageProps) => {
   return (
     <>
       <Head>
-        <title>{title} Green House</title>
+        <title>{title} Tee House</title>
       </Head>
       <NavBar />
       <main className={pageClassName}>{children}</main>

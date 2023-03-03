@@ -4,8 +4,7 @@ export interface Product {
   id: number;
   imageURL: string;
   title: string;
-  short_description: string;
-  long_description: string;
+  description: string;
   price: string;
 }
 
@@ -26,8 +25,7 @@ const transformProduct = (product: any): Product => {
   return {
     id: product.id,
     title: product.attributes.name,
-    short_description: product.attributes.short_description,
-    long_description: product.attributes.long_description,
+    description: product.attributes.description,
     price: `$${product.attributes.price}`,
     imageURL: `${CMS_URL}${product.attributes.image.data.attributes.url}`,
   };

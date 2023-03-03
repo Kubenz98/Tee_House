@@ -18,7 +18,7 @@ export default function Home({ products }: HomePageProps) {
   return (
     <Page title="">
       <h1 className="text-4xl text-center mb-10">Bestsellers</h1>
-      <ul className="mt-10 flex gap-5 flex-row flex-wrap justify-around mx-auto max-w-[1800px]">
+      <ul className="mt-10 flex gap-5 flex-row flex-wrap justify-around mx-auto max-w-[1600px]">
         {products.map((product: Product) => (
           <ProductItem key={product.id} product={product} />
         ))}

@@ -11,7 +11,7 @@ const NavBar = () => {
   return (
     <header className="fixed bg-slate-100 top-0 left-0 right-0 border-b border-gray-300 shadow z-10">
       <nav className="py-4 px-4 flex justify-between items-center">
-        <Image src="/gh.png" alt="logo" width={220} height={34} priority />
+        <Image src="/logo.png" alt="logo" width={160} height={36} priority />
           <ul className="max-[640px]:hidden">
             <li>
               <Link href="SignIn">Sign In</Link>
