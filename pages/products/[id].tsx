@@ -1,5 +1,5 @@
 import Page from "@/components/Page";
-import { ApiError } from "@/lib/apit";
+import { ApiError } from "@/lib/api";
 import { getProducts, getProduct, Product } from "@/lib/products";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
@@ -29,7 +29,7 @@ export const getStaticProps: GetStaticProps<
 > = async ({ params }) => {
   const id = params?.id;
   if (!id) {
-   throw new Error('id not set')
+    throw new Error("id not set");
   }
   try {
     const product = await getProduct(id);
@@ -37,10 +37,10 @@ export const getStaticProps: GetStaticProps<
       props: { product },
     };
   } catch (err) {
-    if(err instanceof ApiError && err.status === 404) {
+    if (err instanceof ApiError && err.status === 404) {
       return { notFound: true };
     }
-    throw err
+    throw err;
   }
 };
 
@@ -62,12 +62,8 @@ const ProductPage = ({ product }: ProductProps) => {
           />
         </div>
         <div className="max-w-[455px] min-[620px]:ml-10">
-          <h2 className="text-3xl my-2 font-semibold">
-            {product.title}
-          </h2>
-          <p className="mt-8 sm:text-lg lg:text-xl">
-            {product.description}
-          </p>
+          <h2 className="text-3xl my-2 font-semibold">{product.title}</h2>
+          <p className="mt-8 sm:text-lg lg:text-xl">{product.description}</p>
           {/* TODO: INPUT AND BUTTON */}
         </div>
       </div>

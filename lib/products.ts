@@ -1,4 +1,4 @@
-import { fetchJson } from "./apit";
+import { fetchJson } from "./api";
 
 export interface Product {
   id: number;

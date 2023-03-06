@@ -1,16 +1,22 @@
 /** @type {import('next').NextConfig} */
+
+const { PROTOCOL, HOSTNAME, PORT, PATHNAME } = process.env;
+
 const nextConfig = {
   reactStrictMode: false,
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: '127.0.0.1',
-        port: '1337',
-        pathname: '/uploads/**'
+        protocol: PROTOCOL,
+        hostname: HOSTNAME,
+        port: PORT,
+        pathname: PATHNAME,
       },
     ],
   },
-}
+  env: {
+    JWT_SECRET: process.env.JWT_SECRET,
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
