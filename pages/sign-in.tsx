@@ -4,6 +4,7 @@ import Input from "@/components/Input";
 import { useRef } from "react";
 import Page from "@/components/Page";
 import useSignIn from "@/hooks/useSignIn";
+import Link from "next/link";
 
 const SignIn = () => {
   const router = useRouter();
@@ -15,7 +16,7 @@ const SignIn = () => {
     e.preventDefault();
     const email = emailRef.current!.value;
     const password = passwordRef.current!.value;
-    const valid = await signIn({ email, password });
+    const valid = await signIn(email, password);
     if (valid) router.push("/");
   };
 
@@ -23,14 +24,22 @@ const SignIn = () => {
     <Page title="Sign in |">
       <div className="max-w-[400px] mx-auto py-8 px-8 rounded bg-slate-100 shadow-xl">
         <form onSubmit={signInHandler}>
-          <Input type="email" value={emailRef} />
-          <Input type="password" value={passwordRef} />
-          {isError && <p className="text-rose-700">Credentials error</p>}
+          <Input type="email" name="email" value={emailRef} />
+          <Input type="password" name="password" value={passwordRef} />
+          {isError && (
+            <p className="text-rose-700 text-center mt-2">Credentials error</p>
+          )}
           <FormButton
             text={`${isLoading ? "loading..." : "Sign In"}`}
             disabled={isLoading}
           />
         </form>
+        <Link
+          href="/sign-up"
+          className="block text-center mt-5 text-sm min-[360px]:text-base underline underline-offset-2"
+        >
+          Click here to create new account!
+        </Link>
       </div>
     </Page>
   );

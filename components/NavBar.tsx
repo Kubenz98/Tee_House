@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Burger from "./Burger/Burger";
 import Link from "next/link";
-import { fetchJson } from "@/lib/api";
-import { useQuery, useQueryClient } from "react-query";
 import useUser from "@/hooks/useUser";
 import useLogout from "@/hooks/useLogout";
 

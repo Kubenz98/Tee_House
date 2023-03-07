@@ -19,7 +19,7 @@ const useSignIn = () => {
         body: JSON.stringify({ email, password }),
       })
   );
-  const signIn = async ({ email, password }: SignInVariables) => {
+  const signIn = async (email: string, password: string) => {
     try {
       const user = await mutation.mutateAsync({ email, password });
       queryClient.setQueryData("user", user);
