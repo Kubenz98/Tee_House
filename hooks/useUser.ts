@@ -2,7 +2,7 @@ import { fetchJson } from "@/lib/api";
 import { useQuery } from "react-query";
 import { User } from "@/lib/user";
 
-const useUser = (): { user: User } => {
+const useUser = (): { user: User, loading: boolean } => {
   const query = useQuery(
     "user",
     async () => {
@@ -17,7 +17,7 @@ const useUser = (): { user: User } => {
       staleTime: 30_000, // ms
     }
   );
-  return { user: query.data };
+  return { user: query.data, loading: query.isLoading };
 };
 
 export default useUser;
