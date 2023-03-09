@@ -7,7 +7,7 @@ const useUser = (): { user: User } => {
     "user",
     async () => {
       try {
-        return await fetchJson("api/user");
+        return await fetchJson("/api/user");
       } catch (err) {
         return undefined;
       }
