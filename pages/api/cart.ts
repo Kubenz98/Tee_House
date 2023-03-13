@@ -1,10 +1,9 @@
 import { fetchJson, tokenValidation } from "@/lib/api";
 import { NextApiHandler } from "next";
-import jsonweb, { JwtPayload } from "jsonwebtoken";
 
 const { CMS_URL, JWT_SECRET } = process.env;
 
-const handleUser: NextApiHandler = async (req, res) => {
+const handlePostCart: NextApiHandler = async (req, res) => {
   const { jwt } = req.cookies;
   if (!jwt) {
     res.status(401).json({ error: "Unauthorized" });
@@ -15,22 +14,19 @@ const handleUser: NextApiHandler = async (req, res) => {
       res.status(401).json({ error: "Token expired" });
       return;
     }
-    const user = await fetchJson(`${CMS_URL}/api/users/me`, {
+    const { productId } = req.body;
+    await fetchJson(`${CMS_URL}/api/cart-items`, {
+      method: "POST",
       headers: {
         Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify({ data: { product: productId } }),
     });
-    res.status(200).json({
-      name: user.username,
-      id: user.id,
-    });
-  } catch (err: any) {
-    if (err.message === "fetch failed") {
-      res.status(503).json({ error: "Failed to fetch" });
-      return;
-    }
-    res.status(500).end();
+    res.status(200).json({ message: `Added product ${productId}` });
+  } catch (err) {
+    res.status(400).end();
   }
 };
 
-export default handleUser;
+export default handlePostCart;

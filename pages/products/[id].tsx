@@ -1,3 +1,4 @@
+import AddToCart from "@/components/AddToCart";
 import Page from "@/components/Page";
 import { ApiError } from "@/lib/api";
 import { getProducts, getProduct, Product } from "@/lib/products";
@@ -64,7 +65,7 @@ const ProductPage = ({ product }: ProductProps) => {
         <div className="max-w-[455px] min-[620px]:ml-10">
           <h2 className="text-3xl my-2 font-semibold">{product.title}</h2>
           <p className="mt-8 sm:text-lg lg:text-xl">{product.description}</p>
-          {/* TODO: INPUT AND BUTTON */}
+          <AddToCart productId={product.id} />
         </div>
       </div>
     </Page>
