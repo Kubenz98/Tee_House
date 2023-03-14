@@ -1,15 +1,16 @@
 import useCart from "@/hooks/useCart";
 import React from "react";
-
+import ErrorBoundary from "./ErrorBoundary";
 interface AddToCartProps {
   productId: number;
 }
 
 const AddToCart = ({ productId }: AddToCartProps) => {
-  const { addItem } = useCart()
+  const { addItem, addItemMutation } = useCart();
   const addToCartHandler = () => {
-    addItem(productId)
+    addItem(productId);
   };
+  if(addItemMutation.isError) throw new Error("Can't add item to cart")
   return (
     <div className="mt-8 flex items-center gap-3">
       <button

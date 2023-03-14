@@ -47,28 +47,28 @@ export const getStaticProps: GetStaticProps<
 
 const ProductPage = ({ product }: ProductProps) => {
   return (
-    <Page
-      title={`${product.title} |`}
-      className="max-w-[1400px] mx-auto bg-slate-100 shadow"
-    >
-      <div className="flex flex-col items-center min-[820px]:flex-row min-[820px]:items-center">
-        <div className="max-w-[455px]">
-          <Image
-            src={product.imageURL}
-            alt={product.title}
-            priority
-            width={455}
-            height={455}
-            className="m-auto"
-          />
+      <Page
+        title={`${product.title} |`}
+        className="max-w-[1400px] mx-auto bg-slate-100 shadow"
+      >
+        <div className="flex flex-col items-center min-[820px]:flex-row min-[820px]:items-center">
+          <div className="max-w-[455px]">
+            <Image
+              src={product.imageURL}
+              alt={product.title}
+              priority
+              width={455}
+              height={455}
+              className="m-auto"
+            />
+          </div>
+          <div className="max-w-[455px] min-[620px]:ml-10">
+            <h2 className="text-3xl my-2 font-semibold">{product.title}</h2>
+            <p className="mt-8 sm:text-lg lg:text-xl">{product.description}</p>
+            <AddToCart productId={product.id} />
+          </div>
         </div>
-        <div className="max-w-[455px] min-[620px]:ml-10">
-          <h2 className="text-3xl my-2 font-semibold">{product.title}</h2>
-          <p className="mt-8 sm:text-lg lg:text-xl">{product.description}</p>
-          <AddToCart productId={product.id} />
-        </div>
-      </div>
-    </Page>
+      </Page>
   );
 };
 

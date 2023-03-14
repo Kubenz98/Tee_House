@@ -13,13 +13,9 @@ const useCart = () => {
     })
   );
   const addItem = async (productId: number) => {
-    try {
       await addItemMutation.mutateAsync(productId);
-    } catch (err: any) {
-      throw new Error(err);
-    }
   };
-  return { addItem }
+  return { addItem, addItemMutation }
 };
 
 export default useCart
