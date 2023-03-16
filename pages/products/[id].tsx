@@ -5,6 +5,7 @@ import { getProducts, getProduct, Product } from "@/lib/products";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
 import { ParsedUrlQuery } from "querystring";
+import useUser from "@/hooks/useUser"
 
 interface ProductProps {
   product: Product;
@@ -46,6 +47,7 @@ export const getStaticProps: GetStaticProps<
 };
 
 const ProductPage = ({ product }: ProductProps) => {
+  const { user } = useUser()
   return (
       <Page
         title={`${product.title} |`}
@@ -65,7 +67,7 @@ const ProductPage = ({ product }: ProductProps) => {
           <div className="max-w-[455px] min-[620px]:ml-10">
             <h2 className="text-3xl my-2 font-semibold">{product.title}</h2>
             <p className="mt-8 sm:text-lg lg:text-xl">{product.description}</p>
-            <AddToCart productId={product.id} />
+            {user && <AddToCart productId={product.id} />}
           </div>
         </div>
       </Page>

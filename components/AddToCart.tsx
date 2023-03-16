@@ -1,14 +1,17 @@
 import useCart from "@/hooks/useCart";
 import React from "react";
-import ErrorBoundary from "./ErrorBoundary";
+import { useRouter } from "next/router";
+
 interface AddToCartProps {
   productId: number;
 }
 
 const AddToCart = ({ productId }: AddToCartProps) => {
   const { addItem, addItemMutation } = useCart();
-  const addToCartHandler = () => {
-    addItem(productId);
+  const router = useRouter()
+  const addToCartHandler = async () => {
+    await addItem(productId);
+    router.push("/cart")
   };
   if(addItemMutation.isError) throw new Error("Can't add item to cart")
   return (

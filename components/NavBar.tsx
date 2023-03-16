@@ -11,7 +11,7 @@ const NavBar = () => {
   const [navActive, setNavActive] = useState<boolean>(false);
   const navHandler = () => setNavActive((state) => !state);
   const logout = useLogout();
-  const { user, loading } = useUser();
+  const { user, userIsLoading } = useUser();
 
   return (
     <header className="fixed top-0 left-0 right-0 min-w-[290px] max-w-[1400px] mx-auto text-stone-700 text-md border-b border-gray-300 shadow z-10">
@@ -19,12 +19,12 @@ const NavBar = () => {
         <Link href="/" className="mx-4">
           <Image src="/logo.png" alt="logo" width={160} height={36} priority />
         </Link>
-        <HorizontalNavBarList user={user} loading={loading} logout={logout} />
+        <HorizontalNavBarList user={user} loading={userIsLoading} logout={logout} />
         <Burger navState={navActive} navHandler={navHandler} />
         <VerticalNavBarList
           navState={navActive}
           user={user}
-          loading={loading}
+          loading={userIsLoading}
           logout={logout}
         />
       </nav>

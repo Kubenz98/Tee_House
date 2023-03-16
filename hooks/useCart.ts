@@ -1,8 +1,15 @@
 import { fetchJson } from "@/lib/api";
+import { CreateCart } from "@/lib/cart";
 import { Product } from "@/lib/products";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 
 const useCart = () => {
+
+  const query = useQuery(
+    "cartItems",
+    () => fetchJson("/api/cart"),
+    { enabled: false }
+  );
   const addItemMutation = useMutation<Product, Error, number>((productId) =>
     fetchJson("/api/cart", {
       method: "POST",
@@ -13,9 +20,13 @@ const useCart = () => {
     })
   );
   const addItem = async (productId: number) => {
-      await addItemMutation.mutateAsync(productId);
+    await addItemMutation.mutateAsync(productId);
   };
-  return { addItem, addItemMutation }
+  let cart = query.data
+  if(query.data) {
+    cart = CreateCart(query.data)
+  }
+  return { cart, cartIsLoading: query.isLoading, addItem, addItemMutation };
 };
 
-export default useCart
+export default useCart;

@@ -1,5 +1,6 @@
 import { fetchJson, tokenValidation } from "@/lib/api";
 import { NextApiHandler } from "next";
+import { transformCartItem } from "@/lib/cart";
 
 const { CMS_URL, JWT_SECRET } = process.env;
 
@@ -15,6 +16,7 @@ const handlePostCart: NextApiHandler = async (req, res) => {
       return;
     }
     const { productId } = req.body;
+    console.log(req.body);
     await fetchJson(`${CMS_URL}/api/cart-items`, {
       method: "POST",
       headers: {
@@ -29,4 +31,40 @@ const handlePostCart: NextApiHandler = async (req, res) => {
   }
 };
 
-export default handlePostCart;
+const handleGetCart: NextApiHandler = async (req, res) => {
+  const { jwt } = req.cookies;
+  if (!jwt) {
+    res.status(401).json({ error: "Unauthorized" });
+    return;
+  }
+  try {
+    if (!tokenValidation(jwt, JWT_SECRET!)) {
+      res.status(401).json({ error: "Token expired" });
+      return;
+    }
+    const cart = await fetchJson(
+      `${CMS_URL}/api/cart-items?populate=product&populate=product.image`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    res.status(200).json(cart.data.map(transformCartItem));
+  } catch (err) {}
+};
+
+const handleCart: NextApiHandler = async (req, res) => {
+  switch (req.method) {
+    case "POST":
+      return handlePostCart(req, res);
+    case "GET":
+      return handleGetCart(req, res);
+    default:
+      res.status(405).end();
+  }
+};
+
+export default handleCart;
