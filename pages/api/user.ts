@@ -1,13 +1,12 @@
 import { fetchJson, tokenValidation } from "@/lib/api";
 import { NextApiHandler } from "next";
-import jsonweb, { JwtPayload } from "jsonwebtoken";
 
 const { CMS_URL, JWT_SECRET } = process.env;
 
 const handleUser: NextApiHandler = async (req, res) => {
   const { jwt } = req.cookies;
   if (!jwt) {
-    res.status(401).json({ error: "Unauthorized" });
+    res.status(200).end()
     return;
   }
   try {

@@ -12,7 +12,7 @@ const useCart = () => {
   const query = useQuery("cartItems", () => fetchJson("/api/cart"), {
     enabled: false,
   });
-
+  
   const addItemToCartMutation = useMutation<Product, Error, number>(
     (productId) =>
       fetchJson("/api/cart", {
@@ -37,7 +37,7 @@ const useCart = () => {
         body: JSON.stringify({ productId, action }),
       })
   );
-
+  
   const addItemQuantity = async ({ productId, action }: ProductsPut) => {
     await addItemQuantityMutation.mutateAsync({ productId, action });
   };
