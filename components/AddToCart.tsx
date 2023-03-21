@@ -7,13 +7,15 @@ interface AddToCartProps {
 }
 
 const AddToCart = ({ productId }: AddToCartProps) => {
-  const { addItem, addItemMutation } = useCart();
-  const router = useRouter()
+  const { addItem, addItemToCartMutation } = useCart();
+  const router = useRouter();
+
   const addToCartHandler = async () => {
     await addItem(productId);
-    router.push("/cart")
+    router.push("/cart");
   };
-  if(addItemMutation.isError) throw new Error("Can't add item to cart")
+  if (addItemToCartMutation.isError) throw new Error("Can't add item to cart");
+
   return (
     <div className="mt-8 flex items-center gap-3">
       <button
