@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React, { ReactNode } from "react";
-import NavBar from "./NavBar";
+import NavBar from "./Navigation/NavBar";
 
 interface PageProps {
   title: string;
