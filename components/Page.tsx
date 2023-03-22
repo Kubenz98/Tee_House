@@ -9,7 +9,10 @@ interface PageProps {
 }
 
 const Page = ({ title, children, className }: PageProps) => {
-  const pageClassName = className ? `${className} mx-4 px-4 py-4 mt-24 text-stone-700` : `px-4 py-4 mt-24 text-stone-700`
+    let pageClassName = 'px-4 pt-10 pb-20 mt-24 text-stone-700 bg-slate-100'
+    if(className) {
+      pageClassName += ` ${className}`
+    }
 
   return (
     <>

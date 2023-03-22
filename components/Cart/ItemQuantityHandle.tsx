@@ -30,7 +30,7 @@ const ItemQuantityHandle = ({ productId }: QuantityHandleProps) => {
   const buttonClassName =
     "text-lg w-[50px] rounded-md bg-indigo-500 text-white md:hover:bg-indigo-700 transition-colors disabled:opacity-50";
   return (
-    <div className="flex gap-1 mt-2">
+    <div className="flex gap-1 mt-auto mb-2">
       <button
         onClick={addItemHandler}
         disabled={addItemQuantityMutation.isLoading}

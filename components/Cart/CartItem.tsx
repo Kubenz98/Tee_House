@@ -22,7 +22,7 @@ const CartItem = ({ data }: CartItemProps) => {
         />
       </Link>
       <div className="flex flex-col">
-        <h4 className="max-w-[120px]">{product.name}</h4>
+        <h4 className="max-w-[120px] font-semibold leading-1">{product.name}</h4>
         <span>{product.price}</span>
         <span>Quantity: {product.quantity}</span>
         <ItemQuantityHandle productId={productId} />

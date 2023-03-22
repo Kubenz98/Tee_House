@@ -21,7 +21,7 @@ const Cart = () => {
   }
   return (
     <Page title="Cart |" className="max-w-[1400px] mx-auto bg-slate-100 shadow">
-      <h1 className=" mb-8 text-4xl font-semibold text-center">Cart</h1>
+      <h1 className=" mb-20 text-4xl font-semibold text-center">Cart</h1>
       {cartIsLoading ? (
         <p>Loading...</p>
       ) : (

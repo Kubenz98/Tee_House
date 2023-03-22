@@ -14,7 +14,7 @@ const CartList = ({ cart }: CartListProps) => {
     return <h2 className="text-xl text-center">Empty</h2>;
   }
   return (
-    <ul className="grid grid-cols-[repeat(auto-fit,320px)] justify-center gap-6">
+    <ul className="grid grid-cols-[repeat(auto-fit,320px)] justify-center gap-12">
       {cart.items.map((item: CartItemType) => (
         <li key={item.cartItemId} className="w-[320px] mx-auto">
           <CartItem data={item} />
