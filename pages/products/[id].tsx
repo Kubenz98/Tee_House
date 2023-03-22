@@ -64,9 +64,10 @@ const ProductPage = ({ product }: ProductProps) => {
               className="m-auto"
             />
           </div>
-          <div className="max-w-[455px] min-[620px]:ml-10">
-            <h2 className="text-3xl my-2 font-semibold">{product.title}</h2>
-            <p className="mt-8 sm:text-lg lg:text-xl">{product.description}</p>
+          <div className="max-w-[455px] min-[820px]:ml-10">
+            <h2 className="text-3xl my-8 font-semibold">{product.title}</h2>
+            <p className="sm:text-lg lg:text-xl">{product.description}</p>
+            <span className="block my-6 min-[820px]:my-8 text-2xl">{product.price}</span>
             {user && <AddToCart productId={product.id} />}
           </div>
         </div>
