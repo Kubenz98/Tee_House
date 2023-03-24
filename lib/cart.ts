@@ -1,3 +1,6 @@
+import { UseMutationResult } from "react-query";
+import { Product } from "./products";
+
 export interface CartItemType {
   cartItemId: number;
   product: {
@@ -8,6 +11,21 @@ export interface CartItemType {
     quantity: number;
     productTotal: number;
   };
+}
+
+export interface ProductsPut {
+  productId: number;
+  action: string;
+}
+
+interface ProductIdAndAction {
+  productId: number;
+  action: string;
+}
+
+export interface QuantityHandlerProps extends ProductIdAndAction {
+  quantityHandler: ({ productId, action }: ProductIdAndAction) => Promise<void>;
+  quantityHandlerMutation: UseMutationResult<Product, Error, ProductsPut>;
 }
 
 const CMS_URL = process.env.CMS_URL;
@@ -37,5 +55,5 @@ export const CreateCart = (cartItems: CartItemType[]) => {
     total += cartItem.product.productTotal;
     cart.push(cartItem);
   }
-  return { items: cart, total: total.toFixed(2) }
+  return { items: cart, total: total.toFixed(2) };
 };
