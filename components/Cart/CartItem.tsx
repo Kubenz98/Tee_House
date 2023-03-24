@@ -17,6 +17,7 @@ const CartItem = ({ data }: CartItemProps) => {
     addItemQuantityMutation,
     removeItemQuantity,
     removeItemQuantityMutation,
+    cartRefetch,
   } = useCart();
 
   return (
@@ -41,12 +42,14 @@ const CartItem = ({ data }: CartItemProps) => {
             action="addOne"
             quantityHandler={addItemQuantity}
             quantityHandlerMutation={addItemQuantityMutation}
+            cartRefetch={cartRefetch}
           />
           <QuantityHandler
             productId={productId}
             action="subtractOne"
             quantityHandler={removeItemQuantity}
             quantityHandlerMutation={removeItemQuantityMutation}
+            cartRefetch={cartRefetch}
           />
         </div>
       </div>

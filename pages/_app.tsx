@@ -6,7 +6,7 @@ import {
   faRightToBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import type { AppProps } from "next/app";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ErrorBoundary from "@/components/ErrorBoundary";
 
 const queryClient = new QueryClient();

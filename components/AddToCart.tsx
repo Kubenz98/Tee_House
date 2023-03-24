@@ -15,6 +15,7 @@ const AddToCart = ({ productId }: AddToCartProps) => {
     await addItem(productId);
     router.push("/cart");
   };
+  
   if (addItemToCartMutation.isError) throw new Error("Can't add item to cart");
 
   return (

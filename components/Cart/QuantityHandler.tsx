@@ -1,6 +1,5 @@
 import { QuantityHandlerProps } from "@/lib/cart";
 import React from "react";
-import { useQueryClient } from "react-query";
 import Button from "../Button";
 
 const QuantityHandler = ({
@@ -8,14 +7,14 @@ const QuantityHandler = ({
   action,
   quantityHandler,
   quantityHandlerMutation,
+  cartRefetch,
 }: QuantityHandlerProps) => {
-  const queryClient = useQueryClient();
 
   const itemQuantityHandler = async () => {
     await quantityHandler({ productId, action });
-    queryClient.fetchQuery("cartItems");
+    cartRefetch();
   };
-
+  
   return (
     <Button
       onClick={itemQuantityHandler}

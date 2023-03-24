@@ -1,5 +1,5 @@
 import { fetchJson } from "@/lib/api";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { User } from "@/lib/user";
 
 interface SignInVariables {
@@ -9,6 +9,7 @@ interface SignInVariables {
 
 const useSignIn = () => {
   const queryClient = useQueryClient();
+
   const mutation = useMutation<User, Error, SignInVariables>(
     ({ email, password }) =>
       fetchJson(`/api/login`, {
@@ -19,15 +20,17 @@ const useSignIn = () => {
         body: JSON.stringify({ email, password }),
       })
   );
+
   const signIn = async (email: string, password: string) => {
     try {
       const user = await mutation.mutateAsync({ email, password });
-      queryClient.setQueryData("user", user);
+      queryClient.setQueryData(["user"], user);
       return true;
     } catch (err) {
       return false;
     }
   };
+  
   return { signIn, isLoading: mutation.isLoading, isError: mutation.isError };
 };
 
