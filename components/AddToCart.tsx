@@ -1,6 +1,7 @@
 import useCart from "@/hooks/useCart";
 import React from "react";
 import { useRouter } from "next/router";
+import Button from "./Button";
 
 interface AddToCartProps {
   productId: number;
@@ -17,12 +18,9 @@ const AddToCart = ({ productId }: AddToCartProps) => {
   if (addItemToCartMutation.isError) throw new Error("Can't add item to cart");
 
   return (
-    <button
-      className="py-2 w-full rounded-md bg-indigo-500 text-white hover:bg-indigo-700 transition-colors min-[820px]:w-[50%]"
-      onClick={addToCartHandler}
-    >
+    <Button className="text-lg py-2 w-full min-[820px]:w-[50%]" onClick={addToCartHandler}>
       Add To Cart
-    </button>
+    </Button>
   );
 };
 

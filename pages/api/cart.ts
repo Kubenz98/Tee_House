@@ -81,6 +81,30 @@ const handlePutCart: NextApiHandler = async (req, res) => {
   }
 };
 
+const handleDeleteCart: NextApiHandler = async (req, res) => {
+  const { jwt } = req.cookies;
+  if (!jwt) {
+    res.status(401).json({ error: "Unauthorized" });
+    return;
+  }
+  try {
+    if (!tokenValidation(jwt, JWT_SECRET!)) {
+      res.status(401).json({ error: "Token expired" });
+      return;
+    }
+    await fetchJson(`${CMS_URL}/api/purchase`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json",
+      },
+    });
+    res.status(200).json({message: 'purchased'})
+  } catch (err) {
+    res.status(400).end();
+  }
+}
+
 const handleCart: NextApiHandler = async (req, res) => {
   switch (req.method) {
     case "POST":
@@ -89,6 +113,8 @@ const handleCart: NextApiHandler = async (req, res) => {
       return handleGetCart(req, res);
     case "PUT":
       return handlePutCart(req, res);
+    case "DELETE":
+      return handleDeleteCart(req, res);
     default:
       res.status(405).end();
   }
