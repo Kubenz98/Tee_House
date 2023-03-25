@@ -27,6 +27,6 @@ const transformProduct = (product: any): Product => {
     title: product.attributes.name,
     description: product.attributes.description,
     price: `$${product.attributes.price}`,
-    imageURL: `${CMS_URL}${product.attributes.image.data.attributes.url}`,
+    imageURL: product.attributes.image.data.attributes.url,
   };
 };
