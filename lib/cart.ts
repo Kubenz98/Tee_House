@@ -1,4 +1,9 @@
-import { QueryObserverResult, RefetchOptions, RefetchQueryFilters, UseMutationResult } from "@tanstack/react-query";
+import {
+  QueryObserverResult,
+  RefetchOptions,
+  RefetchQueryFilters,
+  UseMutationResult,
+} from "@tanstack/react-query";
 import { Product } from "./products";
 
 export interface CartItemType {
@@ -26,10 +31,10 @@ interface ProductIdAndAction {
 export interface QuantityHandlerProps extends ProductIdAndAction {
   quantityHandler: ({ productId, action }: ProductIdAndAction) => Promise<void>;
   quantityHandlerMutation: UseMutationResult<Product, Error, ProductsPut>;
-  cartRefetch: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<any, unknown>>
+  cartRefetch: <TPageData>(
+    options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
+  ) => Promise<QueryObserverResult<any, unknown>>;
 }
-
-const CMS_URL = process.env.CMS_URL;
 
 export const transformCartItem = (cartItem: any): CartItemType => {
   return {
@@ -38,7 +43,6 @@ export const transformCartItem = (cartItem: any): CartItemType => {
       id: cartItem.attributes.product.data.id,
       name: cartItem.attributes.product.data.attributes.name,
       image:
-        CMS_URL +
         cartItem.attributes.product.data.attributes.image.data.attributes.url,
       price: `$${cartItem.attributes.product.data.attributes.price}`,
       quantity: cartItem.attributes.quantity,
