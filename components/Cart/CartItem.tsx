@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { CartItemType } from "@/lib/cart";
@@ -57,4 +58,4 @@ const CartItem = ({ data }: CartItemProps) => {
   );
 };
 
-export default CartItem;
+export default React.memo(CartItem);

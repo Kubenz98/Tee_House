@@ -10,7 +10,6 @@ import Button from "@/components/Button";
 const Cart = () => {
   const { cart, cartRefetch, cartIsLoading, purchaseItems, cartIsFetching } =
     useCart();
-
   const { user, userIsLoading } = useUser();
   const router = useRouter();
   const isMutatingItems = useIsMutating();
