@@ -1,7 +1,8 @@
 import { fetchJson } from "@/lib/api";
-import { CreateCart, ProductsPut } from "@/lib/cart";
+import { CartItemType, ProductsPut } from "@/lib/cart";
 import { Product } from "@/lib/products";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { useCallback } from "react";
 
 const useCart = () => {
   const addItemToCartMutation = useMutation<Product, Error, number>({
@@ -63,22 +64,19 @@ const useCart = () => {
     await purchaseItemsMutation.mutateAsync();
   };
 
-  const cartQuery = useQuery({
+  const cartQuery = useQuery<CartItemType[], Error>({
     queryKey: ["cartItems"],
     queryFn: () => fetchJson("/api/cart"),
     enabled: false,
   });
 
-  let cart = cartQuery.data;
-  if (cartQuery.data) {
-    cart = CreateCart(cartQuery.data);
-  }
+  const cartRefetch = useCallback(async () => {
+    await cartQuery.refetch();
+  }, [cartQuery.refetch]);
 
   return {
-    cart,
-    cartRefetch: cartQuery.refetch,
-    cartIsLoading: cartQuery.isLoading,
-    cartIsFetching: cartQuery.isFetching,
+    cartQuery,
+    cartRefetch,
     addItem,
     addItemToCartMutation,
     addItemQuantity,

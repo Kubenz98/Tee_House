@@ -1,3 +1,4 @@
+import useCart from "@/hooks/useCart";
 import { QuantityHandlerProps } from "@/lib/cart";
 import React from "react";
 import Button from "../Button";
@@ -7,8 +8,9 @@ const QuantityHandler = ({
   action,
   quantityHandler,
   quantityHandlerMutation,
-  cartRefetch,
 }: QuantityHandlerProps) => {
+
+  const { cartRefetch } = useCart()
 
   const itemQuantityHandler = async () => {
     await quantityHandler({ productId, action });
