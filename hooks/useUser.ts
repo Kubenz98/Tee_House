@@ -16,7 +16,7 @@ const useUser = (): { user: User; userIsLoading: boolean } => {
         return null;
       }
     },
-    staleTime: 0,
+    staleTime: Infinity,
     cacheTime: 30_000, //ms
     refetchInterval: 30_000,
     enabled: isFetchEnabled,
