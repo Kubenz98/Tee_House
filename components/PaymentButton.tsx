@@ -25,6 +25,7 @@ const PaymentButton = () => {
       className="block py-3 px-6 mx-auto mt-14 lg:mt-20 font-bold text-2xl"
       onClick={purchaseItemsHanlder}
       disabled={!!isMutating}
+      itemVariant={true}
     >
       Pay ${total}
     </Button>

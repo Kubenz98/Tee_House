@@ -2,6 +2,8 @@ import Page from "@/components/Page";
 import ProductItem from "@/components/ProductItem";
 import { getProducts, Product } from "@/lib/products";
 import { GetStaticProps } from "next";
+import { motion } from "framer-motion";
+import { list, title } from "@/lib/framerMotion";
 
 interface HomePageProps {
   products: Product[];
@@ -17,12 +19,27 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
 export default function Home({ products }: HomePageProps) {
   return (
     <Page title="">
-      <h1 className="text-4xl text-center mb-10">Bestsellers</h1>
-      <ul className="mt-10 flex gap-5 flex-row flex-wrap justify-around mx-auto max-w-[1600px]">
+      <motion.h1
+        variants={title}
+        initial="hidden"
+        animate="show"
+        exit="exit"
+        className="text-4xl text-center mb-10"
+      >
+        Bestsellers
+      </motion.h1>
+      <motion.ul
+        variants={list}
+        initial="hidden"
+        animate="show"
+        exit="exit"
+        className="mt-10 flex gap-5 flex-row flex-wrap justify-around mx-auto max-w-[1600px]"
+      >
         {products.map((product: Product) => (
           <ProductItem key={product.id} product={product} />
         ))}
-      </ul>
+      </motion.ul>
     </Page>
   );
 }
+

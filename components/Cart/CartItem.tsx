@@ -27,7 +27,7 @@ const CartItem = ({ data }: CartItemProps) => {
           src={product.image}
           width={150}
           height={150}
-          alt="productImage"
+          alt="This is a product image"
         />
       </Link>
       <div className="flex flex-col">

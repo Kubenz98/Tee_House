@@ -8,18 +8,19 @@ interface AddToCartProps {
 }
 
 const AddToCart = ({ productId }: AddToCartProps) => {
-  const { addItem, addItemToCartMutation } = useCart();
+  const { addItem, addItemToCartMutation, cartRefetch, cartQuery } = useCart();
   const router = useRouter();
 
   const addToCartHandler = async () => {
     await addItem(productId);
+    await cartRefetch();
     router.push("/cart");
   };
-  
+
   if (addItemToCartMutation.isError) throw new Error("Can't add item to cart");
 
   return (
-    <Button className="text-lg py-2 w-full min-[820px]:w-[50%]" onClick={addToCartHandler}>
+    <Button className="text-lg py-2 w-full min-[820px]:w-[50%]" onClick={addToCartHandler} disabled={addItemToCartMutation.isLoading || cartQuery.isFetching} itemVariant={true}>
       Add To Cart
     </Button>
   );

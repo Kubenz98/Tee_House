@@ -19,8 +19,11 @@ const NavBarList = ({ navState, user, logout }: NavBarListProps) => {
       {user ? (
         <>
           <li className="py-3 font-medium">{`Hi ${user.name}!`}</li>
-          <li className="py-3 font-medium rounded sm:py-2 sm:px-2 sm:bg-stone-700 sm:text-white sm:cursor-pointer md:hover:bg-stone-500 transition-colors duration-200 ease">
-            <Link href="/cart">
+          <li>
+            <Link
+              href="/cart"
+              className="py-3 rounded font-medium sm:py-2 sm:px-2 sm:bg-stone-700 sm:text-white sm:cursor-pointer md:hover:bg-stone-500 transition-colors duration-200 ease"
+            >
               <FontAwesomeIcon
                 icon="cart-shopping"
                 width={20}
@@ -41,7 +44,7 @@ const NavBarList = ({ navState, user, logout }: NavBarListProps) => {
           </li>
         </>
       ) : (
-        <li className="py-3 font-medium">
+        <li className="py-3 font-medium md:hover:text-stone-500 transition-colors duration-200 ease">
           <Link href="/sign-in">
             <FontAwesomeIcon
               icon="right-to-bracket"

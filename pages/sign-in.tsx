@@ -5,6 +5,8 @@ import { useRef } from "react";
 import Page from "@/components/Page";
 import useSignIn from "@/hooks/useSignIn";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { list } from "@/lib/framerMotion";
 
 const SignIn = () => {
   const router = useRouter();
@@ -22,7 +24,13 @@ const SignIn = () => {
 
   return (
     <Page title="Sign in |">
-      <div className="max-w-[400px] mx-auto py-8 px-8 rounded bg-slate-100 shadow-xl">
+      <motion.div
+        variants={list}
+        initial="hidden"
+        animate="show"
+        exit="exit"
+        className="max-w-[400px] mx-auto py-8 px-8 rounded bg-slate-100 shadow-xl"
+      >
         <form onSubmit={signInHandler}>
           <Input type="email" name="email" value={emailRef} />
           <Input type="password" name="password" value={passwordRef} />
@@ -30,7 +38,7 @@ const SignIn = () => {
             <p className="text-rose-700 text-center mt-2">Credentials error</p>
           )}
           <FormButton
-            text={`${isLoading ? "loading..." : "Sign In"}`}
+            text={`${isLoading ? "Signin In..." : "Sign In"}`}
             disabled={isLoading}
           />
         </form>
@@ -40,7 +48,7 @@ const SignIn = () => {
         >
           Click here to create new account!
         </Link>
-      </div>
+      </motion.div>
     </Page>
   );
 };

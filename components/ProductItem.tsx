@@ -10,7 +10,7 @@ interface ProductItemProps {
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
     <li>
-      <Link href={`/products/${product.id}`} className="flex justify-center p-5 h-full max-w-1 rounded-lg border border-slate-100 hover:scale-102 hover:border hover:border-black transition-all cursor-pointer">
+      <Link scroll={false} href={`/products/${product.id}`} className="flex justify-center p-5 h-full max-w-1 rounded-lg border border-slate-100 hover:scale-102 hover:border hover:border-black transition-all cursor-pointer">
         <div className="flex flex-col items-center max-w-[400px]">
           <Image
             priority

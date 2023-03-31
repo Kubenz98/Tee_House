@@ -2,6 +2,9 @@ import React from "react";
 import { CartItemType } from "@/lib/cart";
 import CartItem from "./CartItem";
 import useCart from "@/hooks/useCart";
+import LoadingSpinner from "../LoadingSpinner";
+import { motion } from "framer-motion";
+import { itemVariants, parentVariants } from "@/lib/framerMotion";
 
 const CartList = () => {
   const { cartQuery } = useCart();
@@ -9,19 +12,38 @@ const CartList = () => {
   const items = cartQuery.data;
 
   if (items?.length === 0) {
-    return <h2 className="text-xl text-center">Empty</h2>;
+    return (
+      <motion.h2
+        variants={itemVariants}
+        className="text-xl text-center"
+      >
+        Your cart is empty
+      </motion.h2>
+    );
   }
-  if(cartQuery.isLoading) {
-    return <p>Loading...</p>
+  if (cartQuery.isLoading) {
+    return <LoadingSpinner />;
   }
   return (
-    <ul className="grid grid-cols-[repeat(auto-fit,320px)] justify-center gap-12">
+    <motion.ul
+      variants={parentVariants}
+      initial="hidden"
+      animate="show"
+      className="grid grid-cols-[repeat(auto-fit,320px)] justify-center gap-12"
+    >
       {items?.map((item: CartItemType) => (
-        <li key={item.cartItemId} className="w-[320px] mx-auto">
+        <motion.li
+          variants={itemVariants}
+          initial="hidden"
+          animate="show"
+          exit="exit"
+          key={item.cartItemId}
+          className="w-[320px] mx-auto"
+        >
           <CartItem data={item} />
-        </li>
+        </motion.li>
       ))}
-    </ul>
+    </motion.ul>
   );
 };
 
