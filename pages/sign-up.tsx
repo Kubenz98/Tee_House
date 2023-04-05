@@ -6,7 +6,7 @@ import formValidation from "@/utils/formValidation";
 import { useRouter } from "next/router";
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { list } from "@/lib/framerMotion";
+import { list } from "@/lib/framerVariants";
 
 const SignUp = () => {
   const emailRef = useRef<HTMLInputElement>(null);

@@ -6,7 +6,7 @@ import Page from "@/components/Page";
 import useSignIn from "@/hooks/useSignIn";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { list } from "@/lib/framerMotion";
+import { list } from "@/lib/framerVariants";
 
 const SignIn = () => {
   const router = useRouter();

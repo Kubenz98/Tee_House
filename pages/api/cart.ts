@@ -52,7 +52,9 @@ const handleGetCart: NextApiHandler = async (req, res) => {
       }
     );
     res.status(200).json(cart.data.map(transformCartItem));
-  } catch (err) {}
+  } catch (err) {
+    res.status(400).end();
+  }
 };
 
 const handlePutCart: NextApiHandler = async (req, res) => {
@@ -99,11 +101,11 @@ const handleDeleteCart: NextApiHandler = async (req, res) => {
         "Content-Type": "application/json",
       },
     });
-    res.status(200).json({message: 'purchased'})
+    res.status(200).json({ message: "purchased" });
   } catch (err) {
     res.status(400).end();
   }
-}
+};
 
 const handleCart: NextApiHandler = async (req, res) => {
   switch (req.method) {

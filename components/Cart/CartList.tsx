@@ -4,7 +4,7 @@ import CartItem from "./CartItem";
 import useCart from "@/hooks/useCart";
 import LoadingSpinner from "../LoadingSpinner";
 import { motion } from "framer-motion";
-import { itemVariants, parentVariants } from "@/lib/framerMotion";
+import { itemVariants, parentVariants } from "@/lib/framerVariants";
 
 const CartList = () => {
   const { cartQuery } = useCart();
@@ -13,18 +13,15 @@ const CartList = () => {
 
   if (items?.length === 0) {
     return (
-      <motion.h2
-        variants={itemVariants}
-        className="text-xl text-center"
-      >
+      <motion.h2 variants={itemVariants} className="text-xl text-center">
         Your cart is empty
       </motion.h2>
     );
   }
-  if (cartQuery.isLoading) {
-    return <LoadingSpinner />;
-  }
-  return (
+
+  return cartQuery.isLoading ? (
+    <LoadingSpinner />
+  ) : (
     <motion.ul
       variants={parentVariants}
       initial="hidden"

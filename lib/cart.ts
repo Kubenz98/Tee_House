@@ -45,7 +45,7 @@ export const transformCartItem = (cartItem: any): CartItemType => {
   };
 };
 
-export const CalculateTotal = (cartItems: CartItemType[]) => {
+export const calculateTotal = (cartItems: CartItemType[]) => {
   let total = 0;
   for (const cartItem of cartItems) {
     total += cartItem.product.productTotal;

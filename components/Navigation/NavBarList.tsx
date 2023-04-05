@@ -1,59 +1,53 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
 import React from "react";
-import { NavBarListProps } from "@/lib/navbar";
+import SignOutButton from "./SignOutButton";
+import navBarItems from "./ListItems";
+import NavBarListItem from "./NavBarListItem";
+import useLogout from "@/hooks/useLogout";
+import useUser from "@/hooks/useUser";
 
-const NavBarList = ({ navState, user, logout }: NavBarListProps) => {
-  let navClasses = `flex flex-col justify-center w-full sm:flex-row sm:gap-6 sm:justify-start sm:items-center sm:w-fit sm:px-4 text-center bg-slate-100 overflow-hidden transition-[height] ease duration-300`;
+interface NavBarListProps {
+  navState: boolean;
+  disableNavFn: () => void;
+}
+
+const NavBarList = ({ navState, disableNavFn }: NavBarListProps) => {
+  const logout = useLogout();
+  const { user, userIsLoading } = useUser();
+
+  let navClasses = `flex flex-col w-full desktop:flex-row desktop:gap-2 desktop:justify-start desktop:items-center desktop:w-fit desktop:px-4 text-center bg-slate-100 shadow desktop:shadow-none overflow-hidden transition-[height] ease duration-300`;
 
   if (navState && user) {
-    navClasses += " h-[160px] sm:h-auto";
+    navClasses += " h-[300px] desktop:h-auto";
   } else if (navState && !user) {
-    navClasses += " h-[85px] sm:h-auto";
+    navClasses += " h-[85px] desktop:h-auto";
   } else {
-    navClasses += " h-0 sm:h-auto";
+    navClasses += " h-0 desktop:h-auto";
   }
 
   return (
     <ul className={navClasses}>
       {user ? (
         <>
-          <li className="py-3 font-medium">{`Hi ${user.name}!`}</li>
-          <li>
-            <Link
-              href="/cart"
-              className="py-3 rounded font-medium sm:py-2 sm:px-2 sm:bg-stone-700 sm:text-white sm:cursor-pointer md:hover:bg-stone-500 transition-colors duration-200 ease"
-            >
-              <FontAwesomeIcon
-                icon="cart-shopping"
-                width={20}
-                className="inline-block mr-2"
-              />
-              Cart
-            </Link>
-          </li>
-          <li className="py-3 font-medium md:hover:text-stone-500 transition-colors duration-200 ease">
-            <button onClick={logout}>
-              <FontAwesomeIcon
-                icon="power-off"
-                width={20}
-                className="inline-block mr-2"
-              />
-              Sign Out
-            </button>
-          </li>
+          <li className="mt-4 font-medium desktop:mt-0 desktop:mr-12 desktop:text-lg">{`Hi ${user.name}!`}</li>
+          {navBarItems.map((item) => (
+            <NavBarListItem
+              key={item.title}
+              title={item.title}
+              href={item.href}
+              icon={item.icon}
+              disableNavFn={disableNavFn}
+            />
+          ))}
+          <SignOutButton disableNavFn={disableNavFn} logoutFn={logout} />
         </>
       ) : (
-        <li className="py-3 font-medium md:hover:text-stone-500 transition-colors duration-200 ease">
-          <Link href="/sign-in">
-            <FontAwesomeIcon
-              icon="right-to-bracket"
-              width={20}
-              className="inline-block mr-2"
-            />
-            Sign In
-          </Link>
-        </li>
+        <NavBarListItem
+          title="Sign In"
+          href="/sign-in"
+          icon="right-to-bracket"
+          disableNavFn={disableNavFn}
+          userIsLoading={userIsLoading}
+        />
       )}
     </ul>
   );

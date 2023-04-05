@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       screens: {
         "desktop-xl": "1200px",
+        "desktop": "820px"
       },
       colors: {
         "bg-greyish": "#ececec",

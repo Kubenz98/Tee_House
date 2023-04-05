@@ -7,7 +7,7 @@ import Image from "next/image";
 import { ParsedUrlQuery } from "querystring";
 import useUser from "@/hooks/useUser";
 import { motion } from "framer-motion";
-import { itemVariants, parentVariants } from "@/lib/framerMotion";
+import { itemVariants, parentVariants } from "@/lib/framerVariants";
 
 interface ProductProps {
   product: Product;

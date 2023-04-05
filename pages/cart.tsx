@@ -5,7 +5,7 @@ import useUser from "@/hooks/useUser";
 import { useRouter } from "next/router";
 import CartList from "@/components/Cart/CartList";
 import PaymentButton from "@/components/PaymentButton";
-import { itemVariants, parentVariants, title } from "@/lib/framerMotion";
+import { itemVariants, parentVariants, title } from "@/lib/framerVariants";
 import { motion } from "framer-motion";
 
 const Cart = () => {
@@ -33,7 +33,7 @@ const Cart = () => {
       >
         <motion.h1
           variants={itemVariants}
-          className=" mb-20 text-4xl font-semibold text-center"
+          className="mb-20 text-4xl font-semibold text-center"
         >
           Cart
         </motion.h1>

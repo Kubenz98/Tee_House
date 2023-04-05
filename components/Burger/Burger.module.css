@@ -40,7 +40,7 @@
 .hamburger__bars-bar:nth-child(3) {
   top: 16px;
 }
-@media (min-width: 640px) {
+@media (min-width: 820px) {
   .hamburger {
     display: none;
   }

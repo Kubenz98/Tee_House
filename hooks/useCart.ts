@@ -68,6 +68,7 @@ const useCart = () => {
     queryKey: ["cartItems"],
     queryFn: () => fetchJson("/api/cart"),
     enabled: false,
+    cacheTime: 0,
   });
 
   const cartRefetch = useCallback(async () => {

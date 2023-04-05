@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { itemVariants } from "@/lib/framerMotion";
+import { buttonVariants, itemVariants } from "@/lib/framerVariants";
 
 interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   itemVariant?: boolean;
@@ -14,12 +14,12 @@ const Button = ({
   itemVariant,
 }: ButtonProps) => {
   const classes =
-    "rounded-md bg-indigo-500 text-white md:hover:bg-indigo-700 transition-colors disabled:bg-opacity-50 " +
+    "rounded-md bg-indigo-500 text-white transition-colors disabled:opacity-50 " +
     className;
 
   return itemVariant ? (
     <motion.button
-      variants={itemVariants}
+      variants={buttonVariants}
       onClick={onClick}
       className={classes}
       disabled={disabled}

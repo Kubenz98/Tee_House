@@ -1,8 +1,11 @@
 import "@/styles/globals.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
 import {
   faCartShopping,
   faPowerOff,
   faRightToBracket,
+  faShop,
+  faTruck,
 } from "@fortawesome/free-solid-svg-icons";
 
 import type { AppProps } from "next/app";
@@ -12,12 +15,13 @@ import { AnimatePresence } from "framer-motion";
 
 const queryClient = new QueryClient();
 
+config.autoAddCss = false;
+
 const { library } = require("@fortawesome/fontawesome-svg-core");
 //require helps for hydration error
 
+library.add(faCartShopping, faPowerOff, faRightToBracket, faTruck, faShop);
 export default function App({ Component, pageProps, router }: AppProps) {
-  library.add(faCartShopping, faPowerOff, faRightToBracket);
-
   return (
     <QueryClientProvider client={queryClient}>
       <ErrorBoundary>

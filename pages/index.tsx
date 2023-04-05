@@ -3,7 +3,7 @@ import ProductItem from "@/components/ProductItem";
 import { getProducts, Product } from "@/lib/products";
 import { GetStaticProps } from "next";
 import { motion } from "framer-motion";
-import { list, title } from "@/lib/framerMotion";
+import { list, title } from "@/lib/framerVariants";
 
 interface HomePageProps {
   products: Product[];
@@ -42,4 +42,3 @@ export default function Home({ products }: HomePageProps) {
     </Page>
   );
 }
-

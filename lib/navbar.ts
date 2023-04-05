@@ -1,8 +1,9 @@
-import { User } from "./user";
+import { IconProp } from "@fortawesome/fontawesome-svg-core/index";
 
-export interface NavBarListProps {
-  navState: boolean;
-  user: User;
-  loading: boolean;
-  logout: () => Promise<void>;
+export interface NavBarListItemProps {
+  title: string;
+  href: string;
+  icon: IconProp;
+  disableNavFn?: () => void;
+  userIsLoading?: boolean;
 }
