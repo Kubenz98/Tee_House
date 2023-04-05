@@ -25,7 +25,7 @@ const NavBarListItem = ({
       >
         <FontAwesomeIcon
           icon={icon}
-          width={25}
+          width={27}
           className="inline-block pb-1 mr-2"
         />
         {title}

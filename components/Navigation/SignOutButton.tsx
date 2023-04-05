@@ -17,7 +17,7 @@ const SignOutButton = ({ logoutFn, disableNavFn }: SignOutButtonProps) => {
       <button onClick={clickHandler}>
         <FontAwesomeIcon
           icon="power-off"
-          width={20}
+          width={22}
           className="inline-block pb-1 mr-2"
         />
         Sign Out

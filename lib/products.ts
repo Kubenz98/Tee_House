@@ -8,7 +8,7 @@ export interface Product {
   price: string;
 }
 
-const CMS_URL = process.env.CMS_URL;
+const { CMS_URL } = process.env;
 
 export const getProducts = async (): Promise<Product[]> => {
   const products = await fetchJson(`${CMS_URL}/api/products?populate=*`);
