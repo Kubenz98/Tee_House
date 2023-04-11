@@ -5,15 +5,19 @@ import Order from "./Order";
 import { OrderInterface } from "@/lib/orders";
 import { motion } from "framer-motion";
 import { parentVariants, title } from "@/lib/framerVariants";
+import { useRouter } from "next/router";
+import OrderFilter from "./OrderFilter";
 
 const OrderList = () => {
   const { ordersQuery, ordersRefetch } = useOrders();
-
-  const { data } = ordersQuery;
+  const router = useRouter();
+  const { data, isFetching } = ordersQuery;
 
   useEffect(() => {
-    (() => ordersRefetch())();
-  }, [ordersRefetch]);
+    if (router.isReady && router.pathname === "/orders") {
+      (async () => await ordersRefetch())();
+    }
+  }, [ordersRefetch, router.pathname, router.isReady, router.query]);
 
   if (data && data.length === 0) {
     return (
@@ -30,20 +34,23 @@ const OrderList = () => {
   }
 
   return (
-    <motion.ul
-      variants={parentVariants}
-      initial="hidden"
-      animate="show"
-      className="mt-16 mx-auto max-w-[900px]"
-    >
-      {data ? (
-        data.map((order: OrderInterface) => (
-          <Order key={order.id} order={order} />
-        ))
-      ) : (
-        <LoadingSpinner />
-      )}
-    </motion.ul>
+    <div className="mt-16">
+      {data && data.length > 1 && <OrderFilter />}
+      <motion.ul
+        variants={parentVariants}
+        initial="hidden"
+        animate="show"
+        className="mx-auto max-w-[900px]"
+      >
+        {data && !isFetching ? (
+          data.map((order: OrderInterface) => (
+            <Order key={order.id} order={order} />
+          ))
+        ) : (
+          <LoadingSpinner />
+        )}
+      </motion.ul>
+    </div>
   );
 };
 

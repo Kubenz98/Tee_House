@@ -26,7 +26,7 @@ export default function Home({ products }: HomePageProps) {
         exit="exit"
         className="text-4xl text-center mb-10"
       >
-        Bestsellers
+        T-shirts and more
       </motion.h1>
       <motion.ul
         variants={list}

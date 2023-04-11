@@ -2,8 +2,16 @@ import Page from "@/components/Page";
 import { motion } from "framer-motion";
 import { title } from "@/lib/framerVariants";
 import OrderList from "@/components/Orders/OrderList";
+import useUser from "@/hooks/useUser";
+import { useRouter } from "next/router";
 
 const Orders = () => {
+  const { user, userIsLoading } = useUser();
+  const router = useRouter();
+
+  if (!user && !userIsLoading) {
+    router.push("/");
+  }
   return (
     <Page
       title="Orders | "

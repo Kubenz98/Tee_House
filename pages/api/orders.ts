@@ -19,8 +19,9 @@ const handleGetOrders: NextApiHandler = async (req, res) => {
       res.status(401).json({ error: "Token expired" });
       return;
     }
+    const { query } = req;
     const orders = await fetchJson(
-      `${CMS_URL}/api/orders?populate[orderItems][populate][product][populate]=image&sort=createdAt:DESC`,
+      `${CMS_URL}/api/orders?populate[orderItems][populate][product][populate]=image&sort=createdAt:${req.query.sort}`,
       {
         method: "GET",
         headers: {

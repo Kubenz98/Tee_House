@@ -6,6 +6,8 @@ import {
   faRightToBracket,
   faShop,
   faTruck,
+  faArrowUpShortWide,
+  faArrowDownShortWide,
 } from "@fortawesome/free-solid-svg-icons";
 
 import type { AppProps } from "next/app";
@@ -20,7 +22,15 @@ config.autoAddCss = false;
 const { library } = require("@fortawesome/fontawesome-svg-core");
 //require helps for hydration error
 
-library.add(faCartShopping, faPowerOff, faRightToBracket, faTruck, faShop);
+library.add(
+  faCartShopping,
+  faPowerOff,
+  faRightToBracket,
+  faTruck,
+  faShop,
+  faArrowUpShortWide,
+  faArrowDownShortWide
+);
 export default function App({ Component, pageProps, router }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>

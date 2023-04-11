@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { OrderItemProps } from "@/lib/orders";
@@ -26,4 +27,4 @@ const OrderItem = ({ item }: OrderItemProps) => {
   );
 };
 
-export default OrderItem;
+export default React.memo(OrderItem);
