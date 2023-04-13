@@ -1,8 +1,7 @@
 import React from "react";
-import SignOutButton from "./SignOutButton";
+import SignOutButton from "./Dropdown";
 import navBarItems from "./ListItems";
 import NavBarListItem from "./NavBarListItem";
-import useLogout from "@/hooks/useLogout";
 import useUser from "@/hooks/useUser";
 
 interface NavBarListProps {
@@ -11,13 +10,12 @@ interface NavBarListProps {
 }
 
 const NavBarList = ({ navState, disableNavFn }: NavBarListProps) => {
-  const logout = useLogout();
   const { user, userIsLoading } = useUser();
 
-  let navClasses = `flex flex-col w-full desktop:flex-row desktop:gap-2 desktop:justify-start desktop:items-center desktop:w-fit desktop:px-4 text-center bg-slate-100 shadow desktop:shadow-none overflow-hidden transition-[height] ease duration-300`;
+  let navClasses = `flex flex-col w-full ml-auto desktop:mr-10 bg-slate-100 dark:bg-neutral-800 desktop:flex-row desktop:gap-2 desktop:justify-start desktop:items-center desktop:w-fit desktop:px-4 text-center shadow desktop:shadow-none overflow-hidden desktop:overflow-visible transition-[height] ease duration-300`;
 
   if (navState && user) {
-    navClasses += " h-[300px] desktop:h-auto";
+    navClasses += " h-[320px] desktop:h-auto";
   } else if (navState && !user) {
     navClasses += " h-[85px] desktop:h-auto";
   } else {
@@ -28,7 +26,6 @@ const NavBarList = ({ navState, disableNavFn }: NavBarListProps) => {
     <ul className={navClasses}>
       {user ? (
         <>
-          <li className="mt-4 font-medium desktop:mt-0 desktop:mr-12 desktop:text-lg">{`Hi ${user.name}!`}</li>
           {navBarItems.map((item) => (
             <NavBarListItem
               key={item.title}
@@ -38,7 +35,7 @@ const NavBarList = ({ navState, disableNavFn }: NavBarListProps) => {
               disableNavFn={disableNavFn}
             />
           ))}
-          <SignOutButton disableNavFn={disableNavFn} logoutFn={logout} />
+          <SignOutButton disableNavFn={disableNavFn} />
         </>
       ) : (
         <NavBarListItem

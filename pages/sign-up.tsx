@@ -1,4 +1,4 @@
-import FormButton from "@/components/FormButton";
+import FormButton from "@/components/Buttons/FormButton";
 import Input from "@/components/Input";
 import Page from "@/components/Page";
 import useSignUp from "@/hooks/useSignUp";

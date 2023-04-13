@@ -21,21 +21,6 @@ export const itemVariants = {
   exit: { opacity: 0, y: 30, transition: { duration: 0.1 } },
 };
 
-export const buttonVariants = {
-  hidden: { backgroundColor: "rgba(99 102 241, 0)", y: 30 },
-  show: {
-    backgroundColor: "rgba(99 102 241, 1)",
-    y: 0,
-    transition: {
-      duration: 0.2,
-    },
-  },
-  exit: {
-    backgroundColor: "rgba(99 102 241, 0)",
-    y: 30,
-    transition: { duration: 0.1 },
-  },
-};
 
 export const title = {
   hidden: {

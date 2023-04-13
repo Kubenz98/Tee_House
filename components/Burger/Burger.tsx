@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Burger.module.css";
+import BurgerBar from "./BurgerBar";
 
 interface BurgerProps {
   navState: boolean;
@@ -9,16 +9,15 @@ interface BurgerProps {
 const Burger = ({ navState, navHandler }: BurgerProps) => {
   return (
     <div
-      className={
-        navState
-          ? `${styles.hamburger} ${styles["hamburger--active"]}`
-          : styles.hamburger
-      }
+      className='flex items-center relative top-0 right-4 h-full transition desktop:hidden'
     >
-      <div className={styles["hamburger__bars"]} onClick={navHandler}>
-        <span className={styles["hamburger__bars-bar"]}></span>
-        <span className={styles["hamburger__bars-bar"]}></span>
-        <span className={styles["hamburger__bars-bar"]}></span>
+      <div
+        className="relative w-[30px] h-[20px] cursor-pointer"
+        onClick={navHandler}
+      >
+        <BurgerBar isActive={navState} />
+        <BurgerBar isActive={navState} />
+        <BurgerBar isActive={navState} />
       </div>
     </div>
   );

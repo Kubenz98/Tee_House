@@ -12,6 +12,7 @@ const OrderItem = ({ item }: OrderItemProps) => {
           height={100}
           src={item.product.image}
           alt="This is a order item image"
+          className="dark:brightness-90"
         />
       </Link>
       <div className="w-full ml-2">

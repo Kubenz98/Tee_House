@@ -21,7 +21,7 @@ const NavBarListItem = ({
       <Link
         href={href}
         onClick={clickHandler}
-        className="inline-block mt-8 rounded font-medium desktop:p-2 desktop:mt-0 desktop:text-lg desktop:hover:text-stone-500 cursor-pointer transition-colors duration-100 ease"
+        className="inline-block mt-8 rounded font-medium desktop:p-2 desktop:mt-0 desktop:text-lg desktop:hover:text-stone-500 cursor-pointer transition-colors duration-100 ease dark:hover:text-stone-100"
       >
         <FontAwesomeIcon
           icon={icon}

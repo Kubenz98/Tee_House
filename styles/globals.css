@@ -1,11 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-body {
-  background-color: #ECEFF1;
-  min-width: 290px;
-  overflow-x: auto;
-  overscroll-behavior: none;
-}

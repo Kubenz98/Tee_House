@@ -8,7 +8,12 @@ import {
   faTruck,
   faArrowUpShortWide,
   faArrowDownShortWide,
+  faChevronUp,
+  faChevronDown,
+  faSun,
+  faMoon,
 } from "@fortawesome/free-solid-svg-icons";
+import { ThemeProvider } from "next-themes";
 
 import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -29,18 +34,24 @@ library.add(
   faTruck,
   faShop,
   faArrowUpShortWide,
-  faArrowDownShortWide
+  faArrowDownShortWide,
+  faChevronUp,
+  faChevronDown,
+  faSun,
+  faMoon
 );
 export default function App({ Component, pageProps, router }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <ErrorBoundary>
-        <AnimatePresence
-          mode="wait"
-          onExitComplete={() => setTimeout(() => window.scrollTo(0, 0), 20)}
-        >
-          <Component {...pageProps} key={router.pathname} />
-        </AnimatePresence>
+        <ThemeProvider attribute="class" disableTransitionOnChange>
+          <AnimatePresence
+            mode="wait"
+            onExitComplete={() => setTimeout(() => window.scrollTo(0, 0), 20)}
+          >
+            <Component {...pageProps} key={router.pathname} />
+          </AnimatePresence>
+        </ThemeProvider>
       </ErrorBoundary>
     </QueryClientProvider>
   );

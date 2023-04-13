@@ -8,6 +8,7 @@ import { ParsedUrlQuery } from "querystring";
 import useUser from "@/hooks/useUser";
 import { motion } from "framer-motion";
 import { itemVariants, parentVariants } from "@/lib/framerVariants";
+import Link from "next/link";
 
 interface ProductProps {
   product: Product;
@@ -88,7 +89,15 @@ const ProductPage = ({ product }: ProductProps) => {
           >
             {product.price}
           </motion.span>
-          {user && <AddToCart productId={product.id} />}
+          {user ? (
+            <AddToCart productId={product.id} />
+          ) : (
+            <motion.div  variants={itemVariants}>
+              <Link href="/sign-in" className="underline">
+                Sign in to add the product to your cart
+              </Link>
+            </motion.div>
+          )}
         </div>
       </motion.div>
     </Page>

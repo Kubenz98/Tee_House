@@ -12,7 +12,6 @@ interface CartItemProps {
 const CartItem = ({ data }: CartItemProps) => {
   const { product } = data;
   const productId = data.cartItemId;
-
   const {
     addItemQuantity,
     addItemQuantityMutation,
@@ -28,6 +27,7 @@ const CartItem = ({ data }: CartItemProps) => {
           width={150}
           height={150}
           alt="This is a product image"
+          className="dark:brightness-90"
         />
       </Link>
       <div className="flex flex-col">

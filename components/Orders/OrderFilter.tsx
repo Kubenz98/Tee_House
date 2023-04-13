@@ -7,9 +7,9 @@ import { useRouter } from "next/router";
 const OrderFilter = () => {
   const { changeFilter } = useOrders();
   const router = useRouter();
-  let buttonClasses = "mb-4 transition-transform";
+  let iconClasses = "transition-transform";
   if (router.query.sort === "asc") {
-    buttonClasses += " rotate-180";
+    iconClasses += " rotate-180";
   }
 
   return (
@@ -20,8 +20,9 @@ const OrderFilter = () => {
       exit="exit"
       className="flex justify-end mx-auto max-w-[900px]"
     >
-      <button className={buttonClasses} onClick={changeFilter}>
-        <FontAwesomeIcon icon="arrow-up-short-wide" width={27} />
+      <button className="flex mb-4 transition-transform hover:scale-110" onClick={changeFilter}>
+      <span className="mr-2 font-semibold">Sort by date</span>
+        <FontAwesomeIcon icon="arrow-up-short-wide" width={27} className={iconClasses} />
       </button>
     </motion.div>
   );

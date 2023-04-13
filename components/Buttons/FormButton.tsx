@@ -9,7 +9,7 @@ const FormButton = ({ text, disabled }: ButtonProps) => {
   return (
     <button
       disabled={disabled}
-      className="mt-4 py-2 w-full rounded-md bg-indigo-500 text-white hover:bg-indigo-700 transition-colors disabled:opacity-50"
+      className="mt-4 py-2 w-full rounded-md bg-indigo-500 text-white hover:bg-indigo-700 transition-colors disabled:opacity-50 dark:bg-indigo-700 dark:text-indigo-100"
     >
       {text}
     </button>

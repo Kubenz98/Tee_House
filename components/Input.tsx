@@ -16,7 +16,7 @@ const Input = ({ type, value, name }: InputProps) => {
   return (
     <div className="flex flex-col">
       <label htmlFor={joinedwords! ? joinedwords : name}>{name}</label>
-      <input type={type} id={joinedwords! ? joinedwords : name} ref={value} required className="px-2 py-1 bg-indigo-100 border border-indigo-300 rounded sm:py-2"/>
+      <input type={type} id={joinedwords! ? joinedwords : name} ref={value} required className="px-2 py-1 bg-indigo-100 border border-indigo-300 rounded dark:border-indigo-500 sm:py-2"/>
     </div>
   );
 };

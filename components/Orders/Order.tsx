@@ -13,7 +13,7 @@ const Order = ({ order }: OrderProps) => {
       initial="hidden"
       animate="show"
       exit="exit"
-      className="mb-6 bg-white rounded"
+      className="mb-6 bg-white rounded dark:bg-neutral-700"
     >
       <h2 className="font-normal mb-4 pl-2 pt-2 italic text-center">
         Created at {date.toLocaleString()}

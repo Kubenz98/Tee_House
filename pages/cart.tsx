@@ -4,8 +4,8 @@ import useCart from "@/hooks/useCart";
 import useUser from "@/hooks/useUser";
 import { useRouter } from "next/router";
 import CartList from "@/components/Cart/CartList";
-import PaymentButton from "@/components/PaymentButton";
-import { itemVariants, parentVariants, title } from "@/lib/framerVariants";
+import PaymentButton from "@/components/Cart/PaymentButton";
+import { itemVariants, parentVariants } from "@/lib/framerVariants";
 import { motion } from "framer-motion";
 
 const Cart = () => {
