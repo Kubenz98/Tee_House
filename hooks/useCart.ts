@@ -17,7 +17,8 @@ const useCart = () => {
   });
 
   const addItem = async (productId: number) => {
-    await addItemToCartMutation.mutateAsync(productId);
+    const status = await addItemToCartMutation.mutateAsync(productId);
+    return status;
   };
 
   const addItemQuantityMutation = useMutation<Product, Error, ProductsPut>({

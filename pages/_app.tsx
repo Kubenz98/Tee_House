@@ -10,11 +10,9 @@ import {
   faArrowDownShortWide,
   faChevronUp,
   faChevronDown,
-  faSun,
-  faMoon,
+  faRectangleXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { ThemeProvider } from "next-themes";
-
 import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -37,8 +35,7 @@ library.add(
   faArrowDownShortWide,
   faChevronUp,
   faChevronDown,
-  faSun,
-  faMoon
+  faRectangleXmark
 );
 export default function App({ Component, pageProps, router }: AppProps) {
   return (
