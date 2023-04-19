@@ -15,17 +15,18 @@ const handlePostCart: NextApiHandler = async (req, res) => {
       res.status(401).json({ error: "Token expired" });
       return;
     }
-    const { productId } = req.body;
+    const { product } = req.body;
     await fetchJson(`${CMS_URL}/api/cart-items`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${jwt}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ data: { product: productId } }),
+      body: JSON.stringify({ data: { product } }),
     });
-    res.status(200).json({ message: `Added product ${productId}` });
+    res.status(200).json({ message: `Added product ${product}` });
   } catch (err) {
+    console.log(err)
     res.status(400).end();
   }
 };
@@ -53,6 +54,7 @@ const handleGetCart: NextApiHandler = async (req, res) => {
     );
     res.status(200).json(cart.data.map(transformCartItem));
   } catch (err) {
+    console.log(err)
     res.status(400).end();
   }
 };
@@ -79,6 +81,7 @@ const handlePutCart: NextApiHandler = async (req, res) => {
     });
     res.status(200).json({ message: `${action} ${productId}` });
   } catch (err) {
+    console.log(err)
     res.status(400).end();
   }
 };
@@ -103,6 +106,7 @@ const handleDeleteCart: NextApiHandler = async (req, res) => {
     });
     res.status(200).json({ message: "purchased" });
   } catch (err) {
+    console.log(err)
     res.status(400).end();
   }
 };

@@ -1,5 +1,5 @@
-import { fetchJson } from "@/lib/api";
-import { CartItemType, ProductsPut } from "@/lib/cart";
+import { cartFetch, fetchJson } from "@/lib/api";
+import { CartItemType, ProductIdAndAction } from "@/lib/cart";
 import { Product } from "@/lib/products";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useCallback } from "react";
@@ -7,13 +7,7 @@ import { useCallback } from "react";
 const useCart = () => {
   const addItemToCartMutation = useMutation<Product, Error, number>({
     mutationFn: (productId) =>
-      fetchJson("/api/cart", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ productId }),
-      }),
+      cartFetch(productId, "POST")
   });
 
   const addItem = async (productId: number) => {
@@ -21,33 +15,19 @@ const useCart = () => {
     return status;
   };
 
-  const addItemQuantityMutation = useMutation<Product, Error, ProductsPut>({
-    mutationFn: ({ productId, action }) =>
-      fetchJson("api/cart", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ productId, action }),
-      }),
+  const addItemQuantityMutation = useMutation<Product, Error, ProductIdAndAction>({
+    mutationFn: ({ productId, action }) => cartFetch({ productId, action }, "PUT")
   });
 
-  const addItemQuantity = async ({ productId, action }: ProductsPut) => {
+  const addItemQuantity = async ({ productId, action }: ProductIdAndAction) => {
     await addItemQuantityMutation.mutateAsync({ productId, action });
   };
 
-  const removeItemQuantityMutation = useMutation<Product, Error, ProductsPut>({
-    mutationFn: ({ productId, action }) =>
-      fetchJson("api/cart", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ productId, action }),
-      }),
+  const removeItemQuantityMutation = useMutation<Product, Error, ProductIdAndAction>({
+    mutationFn: ({ productId, action }) => cartFetch({ productId, action }, "PUT")
   });
 
-  const removeItemQuantity = async ({ productId, action }: ProductsPut) => {
+  const removeItemQuantity = async ({ productId, action }: ProductIdAndAction) => {
     await removeItemQuantityMutation.mutateAsync({ productId, action });
   };
 

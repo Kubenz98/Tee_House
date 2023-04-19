@@ -13,20 +13,17 @@ export interface CartItemType {
   };
 }
 
-export interface ProductsPut {
-  productId: number;
-  action: string;
-}
-
-interface ProductIdAndAction {
+export interface ProductIdAndAction {
   productId: number;
   action: string;
 }
 
 export interface QuantityHandlerProps extends ProductIdAndAction {
   quantityHandler: ({ productId, action }: ProductIdAndAction) => Promise<void>;
-  quantityHandlerMutation: UseMutationResult<Product, Error, ProductsPut>;
+  quantityHandlerMutation: UseMutationResult<Product, Error, ProductIdAndAction>;
 }
+
+const { CMS_URL } = process.env;
 
 export const transformCartItem = (cartItem: any): CartItemType => {
   return {
