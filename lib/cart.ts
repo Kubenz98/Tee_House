@@ -20,10 +20,12 @@ export interface ProductIdAndAction {
 
 export interface QuantityHandlerProps extends ProductIdAndAction {
   quantityHandler: ({ productId, action }: ProductIdAndAction) => Promise<void>;
-  quantityHandlerMutation: UseMutationResult<Product, Error, ProductIdAndAction>;
+  quantityHandlerMutation: UseMutationResult<
+    Product,
+    Error,
+    ProductIdAndAction
+  >;
 }
-
-const { CMS_URL } = process.env;
 
 export const transformCartItem = (cartItem: any): CartItemType => {
   return {
@@ -32,7 +34,6 @@ export const transformCartItem = (cartItem: any): CartItemType => {
       id: cartItem.attributes.product.data.id,
       name: cartItem.attributes.product.data.attributes.name,
       image:
-        CMS_URL +
         cartItem.attributes.product.data.attributes.image.data.attributes.url,
       price: `$${cartItem.attributes.product.data.attributes.price}`,
       quantity: cartItem.attributes.quantity,
