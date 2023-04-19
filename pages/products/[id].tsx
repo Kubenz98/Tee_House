@@ -1,4 +1,4 @@
-import AddToCart from "@/components/AddToCart";
+import AddToCart from "@/components/AddToCartFromItem";
 import Page from "@/components/Page";
 import { ApiError } from "@/lib/api";
 import { getProducts, getProduct, Product } from "@/lib/products";

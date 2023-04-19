@@ -11,6 +11,7 @@ import {
   faChevronUp,
   faChevronDown,
   faRectangleXmark,
+  faCartPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { ThemeProvider } from "next-themes";
 import type { AppProps } from "next/app";
@@ -35,7 +36,8 @@ library.add(
   faArrowDownShortWide,
   faChevronUp,
   faChevronDown,
-  faRectangleXmark
+  faRectangleXmark,
+  faCartPlus
 );
 export default function App({ Component, pageProps, router }: AppProps) {
   return (

@@ -46,6 +46,8 @@ export const transformOrder = (order: any) => {
   };
 };
 
+const { CMS_URL } = process.env;
+
 const transformOrderItem = (item: any) => {
   return {
     price: `$${item.attributes.price}`,
@@ -54,7 +56,9 @@ const transformOrderItem = (item: any) => {
       id: item.attributes.product.data.id,
       name: item.attributes.product.data.attributes.name,
       price: `$${item.attributes.product.data.attributes.price}`,
-      image: item.attributes.product.data.attributes.image.data.attributes.url,
+      image:
+        CMS_URL +
+        item.attributes.product.data.attributes.image.data.attributes.url,
     },
   };
 };

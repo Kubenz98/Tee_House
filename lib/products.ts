@@ -11,7 +11,9 @@ export interface Product {
 const { CMS_URL } = process.env;
 
 export const getProducts = async (): Promise<Product[]> => {
-  const products = await fetchJson(`${CMS_URL}/api/products?populate=*&sort=id:ASC`);
+  const products = await fetchJson(
+    `${CMS_URL}/api/products?populate=*&sort=id:ASC`
+  );
   return products.data.map(transformProduct);
 };
 
@@ -26,6 +28,6 @@ const transformProduct = (product: any): Product => {
     title: product.attributes.name,
     description: product.attributes.description,
     price: `$${product.attributes.price}`,
-    imageURL: product.attributes.image.data.attributes.url,
+    imageURL: CMS_URL + product.attributes.image.data.attributes.url,
   };
 };
