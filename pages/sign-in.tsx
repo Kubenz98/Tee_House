@@ -32,8 +32,8 @@ const SignIn = () => {
         className="max-w-[400px] mx-auto py-8 px-8 rounded bg-slate-100 shadow-xl dark:bg-neutral-700"
       >
         <form onSubmit={signInHandler}>
-          <Input type="email" name="email" value={emailRef} />
-          <Input type="password" name="password" value={passwordRef} />
+          <Input type="email" name="email" value={emailRef} initial="demo@teehouse.com" />
+          <Input type="password" name="password" value={passwordRef} initial="Demo123" />
           {isError && (
             <p className="text-rose-700 text-center mt-2">Credentials error</p>
           )}

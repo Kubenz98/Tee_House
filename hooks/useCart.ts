@@ -6,8 +6,7 @@ import { useCallback } from "react";
 
 const useCart = () => {
   const addItemToCartMutation = useMutation<Product, Error, number>({
-    mutationFn: (productId) =>
-      cartFetch(productId, "POST")
+    mutationFn: (productId) => cartFetch(productId, "POST")
   });
 
   const addItem = async (productId: number) => {

@@ -9,6 +9,7 @@ import useUser from "@/hooks/useUser";
 import { motion } from "framer-motion";
 import { itemVariants, parentVariants } from "@/lib/framerVariants";
 import Link from "next/link";
+import SimilarProducts from "@/components/SimilarProducts";
 
 interface ProductProps {
   product: Product;
@@ -92,7 +93,7 @@ const ProductPage = ({ product }: ProductProps) => {
           {user ? (
             <AddToCart productId={product.id} />
           ) : (
-            <motion.div  variants={itemVariants}>
+            <motion.div variants={itemVariants}>
               <Link href="/sign-in" className="underline">
                 Sign in to add the product to your cart
               </Link>
@@ -100,6 +101,7 @@ const ProductPage = ({ product }: ProductProps) => {
           )}
         </div>
       </motion.div>
+      <SimilarProducts products={product.similarProducts} />
     </Page>
   );
 };

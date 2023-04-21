@@ -46,8 +46,6 @@ export const transformOrder = (order: any) => {
   };
 };
 
-const { CMS_URL } = process.env;
-
 const transformOrderItem = (item: any) => {
   return {
     price: `$${item.attributes.price}`,

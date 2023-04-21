@@ -27,6 +27,8 @@ export interface QuantityHandlerProps extends ProductIdAndAction {
   >;
 }
 
+const { CMS_URL } = process.env;
+
 export const transformCartItem = (cartItem: any): CartItemType => {
   return {
     cartItemId: cartItem.id,
