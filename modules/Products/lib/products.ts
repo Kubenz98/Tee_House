@@ -30,7 +30,7 @@ const transformSimilarProducts = (product: any) => {
     id: product.id,
     title: product.attributes.name,
     price: `$${product.attributes.price}`,
-    imageURL: product?.attributes?.image?.data?.attributes.url,
+    imageURL: product?.attributes?.image ? product?.attributes?.image.data?.attributes.url : null
   };
 };
 

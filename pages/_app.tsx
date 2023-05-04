@@ -43,7 +43,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <ErrorBoundary>
-        <ThemeProvider attribute="class" disableTransitionOnChange>
+        <ThemeProvider attribute="class" disableTransitionOnChange enableSystem={false}>
           <AnimatePresence
             mode="wait"
             onExitComplete={() => setTimeout(() => window.scrollTo(0, 0), 20)}
