@@ -1,7 +1,7 @@
-import Page from "@/components/Page";
+import Page from "@/modules/common/Page";
 import { motion } from "framer-motion";
 import { title } from "@/lib/framerVariants";
-import OrderList from "@/components/Orders/OrderList";
+import OrderList from "@/modules/Orders/components/OrderList";
 import useUser from "@/hooks/useUser";
 import { useRouter } from "next/router";
 

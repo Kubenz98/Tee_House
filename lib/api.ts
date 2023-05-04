@@ -1,5 +1,5 @@
+import { ProductIdAndAction } from "@/types/cart";
 import jsonweb, { JwtPayload } from "jsonwebtoken";
-import { ProductIdAndAction } from "./cart";
 
 export class ApiError extends Error {
   constructor(url: string, public status: number) {

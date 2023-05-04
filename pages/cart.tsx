@@ -1,10 +1,10 @@
-import Page from "@/components/Page";
+import Page from "@/modules/common/Page";
 import React, { useEffect } from "react";
 import useCart from "@/hooks/useCart";
 import useUser from "@/hooks/useUser";
 import { useRouter } from "next/router";
-import CartList from "@/components/Cart/CartList";
-import PaymentButton from "@/components/Cart/PaymentButton";
+import CartList from "@/modules/Cart/components/CartList";
+import PaymentButton from "@/modules/Cart/components/PaymentButton";
 import { itemVariants, parentVariants } from "@/lib/framerVariants";
 import { motion } from "framer-motion";
 

@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
-import FormButton from "@/components/Buttons/FormButton";
-import Input from "@/components/Input";
+import FormButton from "@/modules/common/Buttons/FormButton";
+import Input from "@/modules/common/Input";
 import { useRef } from "react";
-import Page from "@/components/Page";
+import Page from "@/modules/common/Page";
 import useSignIn from "@/hooks/useSignIn";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -32,8 +32,18 @@ const SignIn = () => {
         className="max-w-[400px] mx-auto py-8 px-8 rounded bg-slate-100 shadow-xl dark:bg-neutral-700"
       >
         <form onSubmit={signInHandler}>
-          <Input type="email" name="email" value={emailRef} initial="demo@teehouse.com" />
-          <Input type="password" name="password" value={passwordRef} initial="Demo123" />
+          <Input
+            type="email"
+            name="email"
+            value={emailRef}
+            initial="demo@teehouse.com"
+          />
+          <Input
+            type="password"
+            name="password"
+            value={passwordRef}
+            initial="Demo123"
+          />
           {isError && (
             <p className="text-rose-700 text-center mt-2">Credentials error</p>
           )}

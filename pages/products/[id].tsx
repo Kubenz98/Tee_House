@@ -1,7 +1,11 @@
-import AddToCart from "@/components/AddToCartFromItem";
-import Page from "@/components/Page";
+import AddToCart from "@/modules/Cart/components/AddToCartFromItem";
+import Page from "@/modules/common/Page";
 import { ApiError } from "@/lib/api";
-import { getProducts, getProduct, Product } from "@/lib/products";
+import {
+  getProducts,
+  getProduct,
+  Product,
+} from "@/modules/Products/lib/products";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
 import { ParsedUrlQuery } from "querystring";
@@ -9,7 +13,7 @@ import useUser from "@/hooks/useUser";
 import { motion } from "framer-motion";
 import { itemVariants, parentVariants } from "@/lib/framerVariants";
 import Link from "next/link";
-import SimilarProducts from "@/components/SimilarProducts";
+import SimilarProducts from "@/modules/Products/components/SimilarProducts";
 
 interface ProductProps {
   product: Product;

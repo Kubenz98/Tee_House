@@ -1,6 +1,6 @@
 import { fetchJson, tokenValidation } from "@/lib/api";
 import { NextApiHandler } from "next";
-import { transformCartItem } from "@/lib/cart";
+import { transformCartItem } from "@/modules/Cart/lib/cart";
 
 const { CMS_URL, JWT_SECRET } = process.env;
 
@@ -26,7 +26,7 @@ const handlePostCart: NextApiHandler = async (req, res) => {
     });
     res.status(200).json({ message: `Added product ${product}` });
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(400).end();
   }
 };
@@ -54,7 +54,7 @@ const handleGetCart: NextApiHandler = async (req, res) => {
     );
     res.status(200).json(cart.data.map(transformCartItem));
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(400).end();
   }
 };
@@ -81,7 +81,7 @@ const handlePutCart: NextApiHandler = async (req, res) => {
     });
     res.status(200).json({ message: `${action} ${productId}` });
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(400).end();
   }
 };
@@ -106,7 +106,7 @@ const handleDeleteCart: NextApiHandler = async (req, res) => {
     });
     res.status(200).json({ message: "purchased" });
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(400).end();
   }
 };

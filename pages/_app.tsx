@@ -16,7 +16,7 @@ import {
 import { ThemeProvider } from "next-themes";
 import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import ErrorBoundary from "@/components/ErrorBoundary";
+import ErrorBoundary from "@/modules/ErrorBoundary";
 import { AnimatePresence } from "framer-motion";
 
 const queryClient = new QueryClient();

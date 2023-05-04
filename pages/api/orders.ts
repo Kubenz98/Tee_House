@@ -1,5 +1,5 @@
 import { fetchJson, tokenValidation } from "@/lib/api";
-import { transformOrder } from "@/lib/orders";
+import { transformOrder } from "@/modules/Orders/lib/orders";
 import { NextApiHandler } from "next";
 
 const { CMS_URL, JWT_SECRET } = process.env;
@@ -32,7 +32,7 @@ const handleGetOrders: NextApiHandler = async (req, res) => {
     );
     res.status(200).json(orders.data.map(transformOrder));
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(400).end();
   }
 };

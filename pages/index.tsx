@@ -1,6 +1,6 @@
-import Page from "@/components/Page";
-import ProductItem from "@/components/ProductItem";
-import { getProducts, Product } from "@/lib/products";
+import Page from "@/modules/common/Page";
+import ProductItem from "@/modules/Products/components/ProductItem";
+import { getProducts, Product } from "@/modules/Products/lib/products";
 import { GetStaticProps } from "next";
 import { motion } from "framer-motion";
 import { list, title } from "@/lib/framerVariants";

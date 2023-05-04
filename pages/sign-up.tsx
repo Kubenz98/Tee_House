@@ -1,6 +1,6 @@
-import FormButton from "@/components/Buttons/FormButton";
-import Input from "@/components/Input";
-import Page from "@/components/Page";
+import FormButton from "@/modules/common/Buttons/FormButton";
+import Input from "@/modules/common/Input";
+import Page from "@/modules/common/Page";
 import useSignUp from "@/hooks/useSignUp";
 import formValidation from "@/utils/formValidation";
 import { useRouter } from "next/router";

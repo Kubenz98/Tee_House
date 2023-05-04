@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { fetchJson } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";
-import { OrderInterface } from "@/lib/orders";
+import { OrderInterface } from "@/types/orders";
 import { useRouter } from "next/router";
 
 const useOrders = () => {
