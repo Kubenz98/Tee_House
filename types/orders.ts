@@ -41,4 +41,10 @@ export interface OrderInterface {
   id: number;
   orderAmount: string;
   orderItems: OrderItem[];
+  checkout: {
+    name: string;
+    street: string;
+    city: string;
+    postalCode: string;
+  };
 }
