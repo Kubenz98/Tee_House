@@ -2,8 +2,9 @@
 export const transformOrder = (order: any) => {
   return {
     id: order.id,
-    orderAmount: `$${order.attributes.totalAmount}`,
     createdAt: order.attributes.createdAt,
+    checkout: order.attributes.checkout,
+    orderAmount: `$${order.attributes.totalAmount}`,
     orderItems: order.attributes.orderItems.data.map(transformOrderItem),
   };
 };

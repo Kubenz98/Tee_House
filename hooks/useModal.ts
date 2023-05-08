@@ -10,11 +10,15 @@ const useModal = () => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
   const redirectToCart = () => {
     router.push("/cart");
   };
-  return { showModal, handleOpenModal, handleCloseModal, redirectToCart };
+  return {
+    showModal,
+    handleOpenModal,
+    handleCloseModal,
+    redirectToCart,
+  };
 };
 
 export default useModal;

@@ -43,18 +43,26 @@ const useCart = () => {
     await removeItemQuantityMutation.mutateAsync({ productId, action });
   };
 
-  const purchaseItemsMutation = useMutation<Product[], Error>({
-    mutationFn: () =>
+  const purchaseItemsMutation = useMutation<Product[], Error, checkoutObject>({
+    mutationFn: (checkout) =>
       fetchJson("api/cart", {
-        method: "DELETE",
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify(checkout),
       }),
   });
 
-  const purchaseItems = async () => {
-    await purchaseItemsMutation.mutateAsync();
+  interface checkoutObject {
+    name: string;
+    street: string;
+    postalCode: string;
+    city: string;
+  }
+
+  const purchaseItems = async (checkout: checkoutObject) => {
+    await purchaseItemsMutation.mutateAsync(checkout);
   };
 
   const cartQuery = useQuery<CartItemType[], Error>({

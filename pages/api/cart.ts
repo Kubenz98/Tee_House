@@ -86,7 +86,7 @@ const handlePutCart: NextApiHandler = async (req, res) => {
   }
 };
 
-const handleDeleteCart: NextApiHandler = async (req, res) => {
+const handlePatchCart: NextApiHandler = async (req, res) => {
   const { jwt } = req.cookies;
   if (!jwt) {
     res.status(401).json({ error: "Unauthorized" });
@@ -97,12 +97,14 @@ const handleDeleteCart: NextApiHandler = async (req, res) => {
       res.status(401).json({ error: "Token expired" });
       return;
     }
+    const checkout = req.body;
     await fetchJson(`${CMS_URL}/api/purchase`, {
-      method: "DELETE",
+      method: "PATCH",
       headers: {
         Authorization: `Bearer ${jwt}`,
         "Content-Type": "application/json",
       },
+      body: JSON.stringify(checkout),
     });
     res.status(200).json({ message: "purchased" });
   } catch (err) {
@@ -119,8 +121,8 @@ const handleCart: NextApiHandler = async (req, res) => {
       return handleGetCart(req, res);
     case "PUT":
       return handlePutCart(req, res);
-    case "DELETE":
-      return handleDeleteCart(req, res);
+    case "PATCH":
+      return handlePatchCart(req, res);
     default:
       res.status(405).end();
   }

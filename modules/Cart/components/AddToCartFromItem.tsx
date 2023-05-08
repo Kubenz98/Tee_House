@@ -4,14 +4,15 @@ import Button from "../../common/Buttons/Button";
 import { motion } from "framer-motion";
 import { itemVariants } from "@/lib/framerVariants";
 import useModal from "@/hooks/useModal";
-import Modal from "../../common/Modal";
+import Modal from "../../Modal/components/Modal";
+import AddItemContent from "@/modules/Modal/components/AddItemContent";
 
 interface AddToCartProps {
   productId: number;
 }
 
 const AddToCart = ({ productId }: AddToCartProps) => {
-  const { addItem, addItemToCartMutation, cartRefetch, cartQuery } = useCart();
+  const { addItem, addItemToCartMutation, cartQuery } = useCart();
   const { showModal, handleOpenModal, handleCloseModal, redirectToCart } =
     useModal();
 
@@ -24,11 +25,12 @@ const AddToCart = ({ productId }: AddToCartProps) => {
   return (
     <>
       {showModal && (
-        <Modal
-          showModal={showModal}
-          closeModal={handleCloseModal}
-          redirectToCart={redirectToCart}
-        />
+        <Modal showModal={showModal}>
+          <AddItemContent
+            closeModal={handleCloseModal}
+            redirect={redirectToCart}
+          />
+        </Modal>
       )}
       <motion.div
         variants={itemVariants}

@@ -28,6 +28,12 @@ export interface OrderProps {
     id: number;
     orderAmount: string;
     orderItems: OrderItem[];
+    checkout: {
+      city: string;
+      name: string;
+      postalCode: string;
+      street: string;
+    };
   };
 }
 export interface OrderInterface {
