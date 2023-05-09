@@ -27,9 +27,7 @@ const Modal = ({ children, showModal }: ModalProps) => {
     </div>
   );
 
-  if (!showModal || !modalRoot) return null;
-
-  return modalRoot && showModal && ReactDOM.createPortal(modal, modalRoot);
+  return (modalRoot && showModal) ? ReactDOM.createPortal(modal, modalRoot) : null;
 };
 
 export default Modal;

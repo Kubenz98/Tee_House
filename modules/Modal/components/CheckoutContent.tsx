@@ -1,13 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "../../common/Buttons/Button";
-import { ContentProps } from "@/types/modal";
+import { CheckoutContentProps } from "@/types/modal";
 import Input from "./Input";
 import useCheckoutInput from "@/hooks/useCheckoutInput";
 import { postalCodeValidate, stringValidate } from "../lib/validate";
 import useCart from "@/hooks/useCart";
 import { useRouter } from "next/router";
 
-const CheckoutContent = ({ closeModal }: ContentProps) => {
+const CheckoutContent = ({ closeModal }: CheckoutContentProps) => {
   const { purchaseItems } = useCart();
   const router = useRouter();
 

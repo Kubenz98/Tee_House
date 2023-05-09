@@ -4,14 +4,23 @@ import { Product } from "@/modules/Products/lib/products";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useCallback } from "react";
 
+interface AddToCartArgs {
+  productId: number;
+  handleOpenModal: () => void;
+}
+
 const useCart = () => {
   const addItemToCartMutation = useMutation<Product, Error, number>({
     mutationFn: (productId) => cartFetch(productId, "POST"),
   });
 
-  const addItem = async (productId: number) => {
+  const addItem = async (
+    e: React.MouseEvent<HTMLButtonElement | SVGSVGElement>,
+    { productId, handleOpenModal }: AddToCartArgs
+  ) => {
+    e.preventDefault();
     const status = await addItemToCartMutation.mutateAsync(productId);
-    return status;
+    status && handleOpenModal();
   };
 
   const addItemQuantityMutation = useMutation<

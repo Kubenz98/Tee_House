@@ -23,7 +23,7 @@ const Order = ({ order }: OrderProps) => {
       ))}
       <div>
         <h3 className="text-center font-semibold">DELIVERY DETAILS</h3>
-        <div className="flex flex-wrap justify-center gap-5 mt-8">
+        <div className="flex flex-col items-center mt-6">
           <span className="font-semibold">
             name: <span className="font-normal">{order.checkout.name}</span>
           </span>
@@ -34,7 +34,7 @@ const Order = ({ order }: OrderProps) => {
             city: <span className="font-normal">{order.checkout.city}</span>
           </span>
           <span className="font-semibold">
-            postal code:
+            postal code:{" "}
             <span className="font-normal">{order.checkout.postalCode}</span>
           </span>
         </div>

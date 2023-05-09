@@ -4,6 +4,7 @@ import { Product } from "../lib/products";
 import Link from "next/link";
 import AddToCartFromList from "@/modules/Cart/components/AddToCartFromList";
 import useUser from "@/hooks/useUser";
+import { useRouter } from "next/router";
 
 interface ProductItemProps {
   product: Product;
@@ -12,10 +13,11 @@ interface ProductItemProps {
 const ProductItem = ({ product }: ProductItemProps) => {
   const { user, userIsLoading } = useUser();
   const { id, imageURL, title, price } = product;
+  const router = useRouter();
   return (
     <li>
       <Link
-        scroll={false}
+        scroll={router.pathname.startsWith("/products")}
         href={`/products/${id}`}
         className="flex justify-center p-5 h-full max-w-1 rounded-lg border border-slate-100 dark:border-neutral-800 hover:scale-102 hover:border-black dark:hover:border-neutral-500 transition-all cursor-pointer"
       >

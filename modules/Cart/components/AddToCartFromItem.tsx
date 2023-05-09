@@ -16,10 +16,6 @@ const AddToCart = ({ productId }: AddToCartProps) => {
   const { showModal, handleOpenModal, handleCloseModal, redirectToCart } =
     useModal();
 
-  const addToCartHandler = async () => {
-    const status = await addItem(productId);
-    status && handleOpenModal();
-  };
   if (addItemToCartMutation.isError) throw new Error("Can't add item to cart");
 
   return (
@@ -40,7 +36,7 @@ const AddToCart = ({ productId }: AddToCartProps) => {
       >
         <Button
           className="text-lg py-2 w-full min-[820px]:w-[50%]"
-          onClick={addToCartHandler}
+          onClick={(e) => addItem(e, {productId, handleOpenModal})}
           disabled={addItemToCartMutation.isLoading || cartQuery.isFetching}
         >
           Add To Cart

@@ -7,10 +7,14 @@ const useModal = () => {
   const handleOpenModal = () => {
     setShowModal(true);
   };
-  const handleCloseModal = () => {
+  const handleCloseModal = (
+    e: React.MouseEvent<HTMLButtonElement | SVGSVGElement>
+  ) => {
+    e.preventDefault();
     setShowModal(false);
   };
-  const redirectToCart = () => {
+  const redirectToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     router.push("/cart");
   };
   return {
