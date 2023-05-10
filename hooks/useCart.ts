@@ -23,7 +23,7 @@ const useCart = () => {
     status && handleOpenModal();
   };
 
-  const addItemQuantityMutation = useMutation<
+  const quantityHandlerMutation = useMutation<
     Product,
     Error,
     ProductIdAndAction
@@ -32,24 +32,8 @@ const useCart = () => {
       cartFetch({ productId, action }, "PUT"),
   });
 
-  const addItemQuantity = async ({ productId, action }: ProductIdAndAction) => {
-    await addItemQuantityMutation.mutateAsync({ productId, action });
-  };
-
-  const removeItemQuantityMutation = useMutation<
-    Product,
-    Error,
-    ProductIdAndAction
-  >({
-    mutationFn: ({ productId, action }) =>
-      cartFetch({ productId, action }, "PUT"),
-  });
-
-  const removeItemQuantity = async ({
-    productId,
-    action,
-  }: ProductIdAndAction) => {
-    await removeItemQuantityMutation.mutateAsync({ productId, action });
+  const quantityHandler = async ({ productId, action }: ProductIdAndAction) => {
+    await quantityHandlerMutation.mutateAsync({ productId, action });
   };
 
   const purchaseItemsMutation = useMutation<Product[], Error, checkoutObject>({
@@ -90,10 +74,8 @@ const useCart = () => {
     cartRefetch,
     addItem,
     addItemToCartMutation,
-    addItemQuantity,
-    addItemQuantityMutation,
-    removeItemQuantity,
-    removeItemQuantityMutation,
+    quantityHandler,
+    quantityHandlerMutation,
     purchaseItems,
     purchaseItemsMutation,
   };

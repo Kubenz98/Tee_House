@@ -4,6 +4,7 @@ import Link from "next/link";
 import { CartItemType } from "@/types/cart";
 import useCart from "@/hooks/useCart";
 import QuantityHandler from "./QuantityHandler";
+import { quantityHandlers } from "../lib/quantityHandlers";
 
 interface CartItemProps {
   data: CartItemType;
@@ -12,12 +13,7 @@ interface CartItemProps {
 const CartItem = ({ data }: CartItemProps) => {
   const { product } = data;
   const productId = data.cartItemId;
-  const {
-    addItemQuantity,
-    addItemQuantityMutation,
-    removeItemQuantity,
-    removeItemQuantityMutation,
-  } = useCart();
+  const { quantityHandler, quantityHandlerMutation } = useCart();
 
   return (
     <div className="flex gap-3">
@@ -37,18 +33,15 @@ const CartItem = ({ data }: CartItemProps) => {
         <span>{product.price}</span>
         <span>Quantity: {product.quantity}</span>
         <div className="py-1 flex gap-1 mt-auto mb-2">
-          <QuantityHandler
-            productId={productId}
-            action="addOne"
-            quantityHandler={addItemQuantity}
-            quantityHandlerMutation={addItemQuantityMutation}
-          />
-          <QuantityHandler
-            productId={productId}
-            action="subtractOne"
-            quantityHandler={removeItemQuantity}
-            quantityHandlerMutation={removeItemQuantityMutation}
-          />
+          {quantityHandlers.map((handler: string, index) => (
+            <QuantityHandler
+              key={index}
+              productId={productId}
+              action={handler}
+              quantityHandler={quantityHandler}
+              quantityHandlerMutation={quantityHandlerMutation}
+            />
+          ))}
         </div>
       </div>
     </div>
