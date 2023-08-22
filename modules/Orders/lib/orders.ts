@@ -1,5 +1,3 @@
-const { CMS_URL } = process.env;
-
 export const transformOrder = (order: any) => {
   return {
     id: order.id,
