@@ -18,7 +18,7 @@ const OrderList = () => {
       (async () => await ordersRefetch())();
     }
   }, [ordersRefetch, router.pathname, router.isReady, router.query]);
-
+  
   if (data && data.length === 0) {
     return (
       <motion.h2

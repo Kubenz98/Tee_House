@@ -1,9 +1,10 @@
+const { CMS_URL } = process.env;
 
 export const transformOrder = (order: any) => {
   return {
     id: order.id,
     createdAt: order.attributes.createdAt,
-    checkout: order.attributes.checkout,
+    checkout: JSON.parse(order.attributes.checkout),
     orderAmount: `$${order.attributes.totalAmount}`,
     orderItems: order.attributes.orderItems.data.map(transformOrderItem),
   };

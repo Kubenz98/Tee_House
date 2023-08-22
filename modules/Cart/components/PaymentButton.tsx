@@ -15,11 +15,7 @@ const PaymentButton = () => {
 
   const isMutating = useIsMutating();
 
-  let total = 0;
-
-  if (cartQuery.data) {
-    total = calculateTotal(cartQuery.data);
-  }
+  const total = cartQuery.data ? calculateTotal(cartQuery.data) : 0;
 
   return total ? (
     <>

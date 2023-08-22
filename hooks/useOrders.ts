@@ -19,9 +19,11 @@ const useOrders = () => {
     enabled: false,
   });
 
+  const { refetch } = ordersQuery;
+
   const ordersRefetch = useCallback(async () => {
-    await ordersQuery.refetch();
-  }, [ordersQuery.refetch]);
+    await refetch();
+  }, [refetch]);
 
   const changeFilter = async () => {
     if (router.query.sort === "asc") {

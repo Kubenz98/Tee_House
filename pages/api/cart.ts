@@ -43,7 +43,7 @@ const handleGetCart: NextApiHandler = async (req, res) => {
       return;
     }
     const cart = await fetchJson(
-      `${CMS_URL}/api/cart-items?populate=product&populate=product.image`,
+      `${CMS_URL}/api/carts?populate=cartItems.product.image`,
       {
         method: "GET",
         headers: {
@@ -52,7 +52,11 @@ const handleGetCart: NextApiHandler = async (req, res) => {
         },
       }
     );
-    res.status(200).json(cart.data.map(transformCartItem));
+    if(cart.data.length) {
+      res.status(200).json(cart.data[0].attributes.cartItems.data.map(transformCartItem));
+    } else {
+      res.status(200).json(cart.data);
+    }
   } catch (err) {
     console.log(err);
     res.status(400).end();

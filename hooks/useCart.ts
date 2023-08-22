@@ -67,7 +67,7 @@ const useCart = () => {
 
   const cartRefetch = useCallback(async () => {
     await cartQuery.refetch();
-  }, [cartQuery.refetch]);
+  }, [cartQuery]);
 
   return {
     cartQuery,
