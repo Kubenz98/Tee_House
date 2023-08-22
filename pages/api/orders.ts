@@ -30,7 +30,6 @@ const handleGetOrders: NextApiHandler = async (req, res) => {
         },
       }
     );
-    console.log(JSON.parse(orders.data[0].attributes.checkout))
     res.status(200).json(orders.data.map(transformOrder));
   } catch (err) {
     console.log(err);
