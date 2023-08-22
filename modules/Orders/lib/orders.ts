@@ -4,7 +4,7 @@ export const transformOrder = (order: any) => {
   return {
     id: order.id,
     createdAt: order.attributes.createdAt,
-    checkout: JSON.parse(order.attributes.checkout),
+    checkout: order.attributes.checkout,
     orderAmount: `$${order.attributes.totalAmount}`,
     orderItems: order.attributes.orderItems.data.map(transformOrderItem),
   };
