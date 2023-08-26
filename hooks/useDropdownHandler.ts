@@ -1,23 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 
-const useDropdownHandler = (ref: React.RefObject<HTMLLIElement>) => {
+const useDropdownHandler = (
+  ref: React.RefObject<HTMLLIElement | HTMLDivElement>,
+  globalClick: boolean
+) => {
   const [dropdownActive, setDropdownActive] = useState<boolean>(false);
 
-  useEffect(() => {
-    const handleClick = (event: MouseEvent) => {
+  const disableDropDown = useCallback(() => {
+    if (dropdownActive) setDropdownActive(false);
+  }, [dropdownActive]);
+
+  const handleClick = useCallback(
+    (event: MouseEvent) => {
       if (ref.current && !ref.current.contains(event.target as Node)) {
         disableDropDown();
       }
-    };
-    document.addEventListener("click", handleClick);
-    return () => {
-      document.removeEventListener("click", handleClick);
-    };
-  }, [dropdownActive]);
+    },
+    [disableDropDown, ref]
+  );
 
-  const disableDropDown = () => {
-    if (dropdownActive) setDropdownActive(false);
-  };
+  useEffect(() => {
+    if (globalClick) {
+      document.addEventListener("click", handleClick);
+      return () => {
+        document.removeEventListener("click", handleClick);
+      };
+    }
+  }, [dropdownActive, disableDropDown, handleClick, ref, globalClick]);
 
   const toggleDropdown = () => setDropdownActive((state) => !state);
 

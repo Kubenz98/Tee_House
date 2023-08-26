@@ -4,6 +4,7 @@ import { getProducts, Product } from "@/modules/Products/lib/products";
 import { GetStaticProps } from "next";
 import { motion } from "framer-motion";
 import { list, title } from "@/lib/framerVariants";
+import Categories from "@/modules/Products/Categories/components/Categories";
 
 interface HomePageProps {
   products: Product[];
@@ -28,17 +29,20 @@ export default function Home({ products }: HomePageProps) {
       >
         T-shirts and more
       </motion.h1>
-      <motion.ul
-        variants={list}
-        initial="hidden"
-        animate="show"
-        exit="exit"
-        className="mt-10 flex gap-5 flex-row flex-wrap justify-around mx-auto max-w-[1600px]"
-      >
-        {products.map((product: Product) => (
-          <ProductItem key={product.id} product={product} />
-        ))}
-      </motion.ul>
+      <div className="min-[700px]:flex min-[700px]:mt-10">
+        <Categories />
+        <motion.ul
+          variants={list}
+          initial="hidden"
+          animate="show"
+          exit="exit"
+          className="flex gap-5 flex-row flex-wrap justify-around mx-auto max-w-[1200px]"
+        >
+          {products.map((product: Product) => (
+            <ProductItem key={product.id} product={product} />
+          ))}
+        </motion.ul>
+      </div>
     </Page>
   );
 }

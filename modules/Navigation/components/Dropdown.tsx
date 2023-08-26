@@ -13,7 +13,7 @@ const Dropdown = ({ disableNavFn }: DropdownProps) => {
   const logout = useLogout();
   const dropdownRef = useRef<HTMLLIElement>(null);
   
-  const { dropdownActive, toggleDropdown } = useDropdownHandler(dropdownRef)
+  const { dropdownActive, toggleDropdown } = useDropdownHandler(dropdownRef, true)
 
   const logoutHandler = () => {
     logout();
