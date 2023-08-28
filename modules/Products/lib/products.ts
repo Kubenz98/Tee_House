@@ -7,6 +7,7 @@ export interface Product {
   description: string;
   price: string;
   similarProducts: Product[];
+  gender: string;
 }
 
 const { CMS_URL } = process.env;
@@ -30,11 +31,13 @@ const transformSimilarProducts = (product: any) => {
     id: product.id,
     title: product.attributes.name,
     price: `$${product.attributes.price}`,
-    imageURL: product?.attributes?.image ? product?.attributes?.image.data?.attributes.url : null
+    imageURL: product?.attributes?.image
+      ? product?.attributes?.image.data?.attributes.url
+      : null,
   };
 };
 
-const transformProduct = (product: any): Product => {
+export const transformProduct = (product: any): Product => {
   return {
     id: product.id,
     title: product.attributes.name,
@@ -44,5 +47,6 @@ const transformProduct = (product: any): Product => {
     similarProducts: product.attributes.similarProducts.data.map(
       transformSimilarProducts
     ),
+    gender: product.attributes.gender,
   };
 };

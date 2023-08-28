@@ -11,10 +11,11 @@ const Categories = () => {
     false
   );
 
-  let listClasses = "flex flex-col items-start gap-2 max-w-[350px] mx-auto py-2 px-4 border font-medium dark:min-[700px]:bg-neutral-600 min-[700px]:border-none desktop:hover:text-stone-500 desktop:text-lg bg-white transition-colors duration-200 ease z-20 dark:hover:text-stone-100 "
+  let listClasses =
+    "flex flex-col items-start gap-2 max-w-[350px] mx-auto py-2 px-4 border font-medium dark:min-[700px]:bg-neutral-600 min-[700px]:border-none desktop:text-lg bg-white transition-colors duration-200 ease z-20 ";
 
-  if(!dropdownActive) {
-    listClasses += "hidden min-[700px]:flex"
+  if (!dropdownActive) {
+    listClasses += "hidden min-[700px]:flex";
   }
 
   return (
@@ -32,12 +33,16 @@ const Categories = () => {
             className="inline-block pb-1 ml-4 min-[700px]:hidden"
           />
         </div>
-          <ul className={listClasses}>
-            <Link href="/categories/male" className="hover:text-stone-200">
+        <ul className={listClasses}>
+          <li>
+            <Link href="/categories/male" className="hover:text-stone-400 dark:hover:text-stone-200">
               Male
             </Link>
-            <Link href="/categories/female">Female</Link>
-          </ul>
+          </li>
+          <li>
+            <Link href="/categories/female"  className="hover:text-stone-400 dark:hover:text-stone-200">Female</Link>
+          </li>
+        </ul>
       </div>
     </>
   );
