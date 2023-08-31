@@ -6,7 +6,7 @@ const { CMS_URL } = process.env;
 
 export const getCategoryProducts = async (
   category: string
-): Promise<Product> => {
+): Promise<Product[]> => {
   const categoryProducts = await fetchJson(
     `${CMS_URL}/api/products?populate=image&populate=similarProducts.image&filters[gender][$eq]=${category}`
   );

@@ -13,7 +13,7 @@ import { getCategoryProducts } from "@/modules/Products/Categories/lib/categorie
 import ProductItem from "@/modules/Products/components/ProductItem";
 
 interface ProductsProps {
-  products: Product;
+  products: Product[];
 }
 
 interface ProductParams extends ParsedUrlQuery {
@@ -42,8 +42,9 @@ export const getStaticProps: GetStaticProps<
   }
   try {
     const products = await getCategoryProducts(category);
+    const cat = products[0].gender
     return {
-      props: { products },
+      props: { products, cat },
     };
   } catch (err) {
     if (err instanceof ApiError && err.status === 404) {
@@ -55,9 +56,11 @@ export const getStaticProps: GetStaticProps<
 
 interface CategoryProps {
   products: Product[];
+  cat: string;
 }
 
-export default function Category({ products }: CategoryProps) {
+export default function Category({ products, cat }: CategoryProps) {
+  console.log(products)
   return (
     <Page title="">
       <motion.h1
@@ -65,9 +68,9 @@ export default function Category({ products }: CategoryProps) {
         initial="hidden"
         animate="show"
         exit="exit"
-        className="text-4xl text-center mb-10"
+        className="text-4xl text-center capitalize min-[700px]:mb-20"
       >
-        Category Products
+        {cat} clothes
       </motion.h1>
       <div className="min-[700px]:flex min-[700px]:mt-10">
         <Categories />
@@ -76,7 +79,7 @@ export default function Category({ products }: CategoryProps) {
           initial="hidden"
           animate="show"
           exit="exit"
-          className="flex gap-5 flex-row flex-wrap justify-around mx-auto max-w-[1200px]"
+          className="flex gap-3 flex-row flex-wrap justify-center mx-auto max-w-[1600px]"
         >
           {products.map((product: Product) => (
             <ProductItem key={product.id} product={product} />

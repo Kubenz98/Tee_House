@@ -25,18 +25,18 @@ export default function Home({ products }: HomePageProps) {
         initial="hidden"
         animate="show"
         exit="exit"
-        className="text-4xl text-center mb-10"
+        className="text-4xl text-center mb-10 min-[700px]:mb-20"
       >
         T-shirts and more
       </motion.h1>
-      <div className="min-[700px]:flex min-[700px]:mt-10">
+      <div className="min-[700px]:flex min-[700px]:justify-center min-[700px]:mt-10">
         <Categories />
         <motion.ul
           variants={list}
           initial="hidden"
           animate="show"
           exit="exit"
-          className="flex gap-5 flex-row flex-wrap justify-around mx-auto max-w-[1200px]"
+          className="flex gap-3 flex-row flex-wrap justify-center mx-auto max-w-[1600px]"
         >
           {products.map((product: Product) => (
             <ProductItem key={product.id} product={product} />
