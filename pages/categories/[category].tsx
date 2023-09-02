@@ -60,7 +60,6 @@ interface CategoryProps {
 }
 
 export default function Category({ products, cat }: CategoryProps) {
-  console.log(products)
   return (
     <Page title="">
       <motion.h1
@@ -72,14 +71,14 @@ export default function Category({ products, cat }: CategoryProps) {
       >
         {cat} clothes
       </motion.h1>
-      <div className="min-[700px]:flex min-[700px]:mt-10">
+      <div className="min-[1024px]:flex min-[700px]:justify-center min-[700px]:mt-10">
         <Categories />
         <motion.ul
           variants={list}
           initial="hidden"
           animate="show"
           exit="exit"
-          className="flex gap-3 flex-row flex-wrap justify-center mx-auto max-w-[1600px]"
+          className="grid grid-cols-1 gap-2 max-w-[1400px] min-[600px]:grid-cols-2 min-[1400px]:grid-cols-3 min-[1800px]:grid-cols-4"
         >
           {products.map((product: Product) => (
             <ProductItem key={product.id} product={product} />
