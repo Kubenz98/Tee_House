@@ -5,19 +5,22 @@ import { GetStaticProps } from "next";
 import { motion } from "framer-motion";
 import { list, title } from "@/lib/framerVariants";
 import Categories from "@/modules/Products/Categories/components/Categories";
+import { CategoryType, getCategories } from "@/modules/Products/Categories/lib/categories";
 
 interface HomePageProps {
   products: Product[];
+  categories: CategoryType[];
 }
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
   const products = await getProducts();
+  const categories = await getCategories();
   return {
-    props: { products },
+    props: { products, categories },
   };
 };
 
-export default function Home({ products }: HomePageProps) {
+export default function Home({ products, categories }: HomePageProps) {
   return (
     <Page title="">
       <motion.h1
@@ -30,7 +33,7 @@ export default function Home({ products }: HomePageProps) {
         T-shirts and more
       </motion.h1>
       <div className="min-[1024px]:flex min-[700px]:justify-center min-[700px]:mt-10">
-        <Categories />
+        <Categories categories={categories}/>
         <motion.ul
           variants={list}
           initial="hidden"

@@ -7,7 +7,6 @@ export interface Product {
   description: string;
   price: string;
   similarProducts: Product[];
-  gender: string;
 }
 
 const { CMS_URL } = process.env;
@@ -47,6 +46,5 @@ export const transformProduct = (product: any): Product => {
     similarProducts: product.attributes.similarProducts.data.map(
       transformSimilarProducts
     ),
-    gender: product.attributes.gender,
   };
 };

@@ -1,11 +1,16 @@
 import React, { useRef } from "react";
+import Link from "next/link";
 import useDropdownHandler from "@/hooks/useDropdownHandler";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
 import { title } from "@/lib/framerVariants";
 import { motion } from "framer-motion";
+import { CategoryType } from "../lib/categories";
 
-const Categories = () => {
+interface CategoriesProps {
+  categories: CategoryType[];
+}
+
+const Categories = ({ categories }: CategoriesProps) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const { dropdownActive, toggleDropdown } = useDropdownHandler(
@@ -42,22 +47,15 @@ const Categories = () => {
           />
         </div>
         <ul className={listClasses}>
-          <li>
+          {categories.map((category) => (
             <Link
-              href="/categories/male"
-              className="hover:text-stone-400 dark:hover:text-stone-200"
+              href={`/categories/${category.attributes.name}`}
+              className="capitalize hover:text-stone-400 dark:hover:text-stone-200"
+              key={category.id}
             >
-              Male
+              {category.attributes.name}
             </Link>
-          </li>
-          <li>
-            <Link
-              href="/categories/female"
-              className="hover:text-stone-400 dark:hover:text-stone-200"
-            >
-              Female
-            </Link>
-          </li>
+          ))}
         </ul>
       </motion.div>
     </>
